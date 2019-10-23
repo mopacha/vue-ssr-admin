@@ -31,8 +31,8 @@ export default {
   name: 'SidebarLogo',
   data() {
     return {
-      title: 'Vue Admin Template',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: 'Vue SSR Template',
+      logo: require('@/assets/logo/logo.png')
     }
   },
 
@@ -65,14 +65,13 @@ export default {
   background: #2b2f3a;
   text-align: center;
   overflow: hidden;
-
   & .sidebar-logo-link {
     height: 100%;
     width: 100%;
 
     & .sidebar-logo {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       vertical-align: middle;
       margin-right: 12px;
     }

@@ -1,22 +1,29 @@
 <template>
   <div :class="classObj"
        class="app-wrapper">
+    <div v-if="device==='mobile'&&sidebar.opened"
+         class="drawer-bg"
+         @click="handleClickOutside" />
     <sidebar />
     <outside />
   </div>
 </template>
 
 <script>
-import Sidebar from "@/layout/sidebar/index"
+import Sidebar from "@/layout/sidebar"
 import Outside from "@/layout/outside/index"
-import ResizeMixin from '@/util/ResizeHandler'
+import ResizeMixin from './ResizeHandler'
 
 export default {
   name: "Layout",
   components: { Outside, Sidebar },
+  mixins: [ResizeMixin],
   computed: {
     sidebar() {
       return this.$store.state.app.sidebar
+    },
+    device() {
+      return this.$store.state.app.device
     },
     classObj() {
       return {
@@ -27,6 +34,11 @@ export default {
       }
     }
   },
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -51,7 +63,5 @@ export default {
   position: absolute;
   z-index: 999;
 }
-
-
 </style>
 

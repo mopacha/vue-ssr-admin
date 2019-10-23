@@ -40,7 +40,7 @@ export default {
 	name: 'Navbar',
 	data() {
 		return {
-			headImg: require('./img/user.png')
+			headImg: require('@/assets/logo/user.png')
 		}
 	},
   components: {
@@ -135,7 +135,7 @@ export default {
           cursor: pointer;
           position: absolute;
           right: -20px;
-          top: 25px;
+          top: 15px;
           font-size: 12px;
         }
       }

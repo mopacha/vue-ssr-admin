@@ -21,11 +21,11 @@ Vue.mixin(titleMixin)
 Vue.use(ElementUI, { size: 'small' })
 
 
-export function createApp() {
 
+export function createApp() {
     const router = createRouter()
-    const store = createStore()
-    
+		const store = createStore()
+		
     sync(store,router)
     const app = new Vue({
         router,

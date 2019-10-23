@@ -1,7 +1,7 @@
-# Vue+Vue-Router+Vuex+Webpack4+ElementUI+SSR 开发后台管理系统
+# VueSSR + Admin
 
+> moofy@163.com   In development
 
-> moofy@163.com   开发中......
 
 ## 什么是服务器端渲染 (SSR)？为什么使用服务器端渲染 (SSR)？
  
@@ -10,10 +10,11 @@
 ## 技术栈
 - vue、vue-router、vuex
 - koa2
+- ElementUI
 - webpack4
 - axios
 - babel、eslint
-- css、stylus、postcss
+- css、scss、postcss
 - pm2
 
 

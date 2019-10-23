@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Layout from '@/layout'
+
+
+//fix bug  Uncaught (in promise) NavigationDuplicated {_name: "NavigationDuplicated", name: "NavigationDuplicated"}
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
 
 Vue.use(Router)
-
-/* Layout */
-import Layout from '@/layout'
 
 export const constantRoutes = [
   {
@@ -27,7 +32,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/pages/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }]
   },
 
@@ -36,19 +41,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: { title: '例子', icon: 'example' },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/pages/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: '表格', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/pages/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: '树图', icon: 'tree' }
       }
     ]
   },
@@ -61,7 +66,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/pages/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: '表单', icon: 'form' }
       }
     ]
   },
@@ -72,7 +77,7 @@ export const constantRoutes = [
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: 'Nested',
+      title: 'Menu',
       icon: 'nested'
     },
     children: [
@@ -120,17 +125,6 @@ export const constantRoutes = [
         path: 'menu2',
         component: () => import('@/pages/nested/menu2/index'),
         meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
       }
     ]
   },
