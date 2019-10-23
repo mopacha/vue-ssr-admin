@@ -1,58 +1,60 @@
 <template>
-  <div class="Tree">
-    <el-dialog id="editForm"
-               title="编辑"
-               width="400px"
-               :show-close="false"
-               :modal="false"
-               :visible="true">
-      <el-form>
-        <el-form-item label="拨打编号"
-                      label-width="120px">
-          <el-input v-model="version"
-                    name="version"
-                    :disabled="true">
-          </el-input>
-        </el-form-item>
-        <el-form-item label="范围"
-                      label-width="120px">
-          <el-select class="value"
-                     name="range"
-                     v-model="range"
-                     placeholder="请选择拨打范围">
-            <el-option v-for="item in rangeOptions"
-                       :key="item.value"
-                       :label="item.label"
-                       :value="item.label">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="机器人"
-                      label-width="120px">
-          <el-select class="value"
-                     name="robot"
-                     v-model="robot"
-                     placeholder="请选择机器人">
-            <el-option v-for="item in robotOptions"
-                       :key="item.value"
-                       :label="item.label"
-                       :value="item.label">
-            </el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div slot="footer"
-           class="dialog-footer">
-        <el-button id="cancel"
-                   type="primary"
-                   @click="dialogFormVisible = false">取 消</el-button>
-        <el-button id="save"
-                   type="primary"
-                   @click="dialogFormVisible = false">确 定</el-button>
-      </div>
-    </el-dialog>
+  <div class="app-container">
+    <div class="Tree">
+      <el-dialog id="editForm"
+                 title="编辑"
+                 width="400px"
+                 :show-close="false"
+                 :modal="false"
+                 :visible="true">
+        <el-form>
+          <el-form-item label="拨打编号"
+                        label-width="120px">
+            <el-input v-model="version"
+                      name="version"
+                      :disabled="true">
+            </el-input>
+          </el-form-item>
+          <el-form-item label="范围"
+                        label-width="120px">
+            <el-select class="value"
+                       name="range"
+                       v-model="range"
+                       placeholder="请选择拨打范围">
+              <el-option v-for="item in rangeOptions"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.label">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="机器人"
+                        label-width="120px">
+            <el-select class="value"
+                       name="robot"
+                       v-model="robot"
+                       placeholder="请选择机器人">
+              <el-option v-for="item in robotOptions"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.label">
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div slot="footer"
+             class="dialog-footer">
+          <el-button id="cancel"
+                     type="primary"
+                     @click="dialogFormVisible = false">取 消</el-button>
+          <el-button id="save"
+                     type="primary"
+                     @click="dialogFormVisible = false">确 定</el-button>
+        </div>
+      </el-dialog>
 
-    <div id="tree"></div>
+      <div id="tree"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -241,6 +243,7 @@ export default {
   }
 
   #tree {
+		background: #f0f0f0;
     width: 100%;
     height: 700px !important;
     position: relative;

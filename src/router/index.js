@@ -69,6 +69,19 @@ export const constantRoutes = [
         meta: { title: '表单', icon: 'form' }
       }
     ]
+	},
+	
+	 {
+    path: '/orgchart',
+    component: Layout,
+    children: [
+      {
+        path: 'orgchart',
+        name: 'Orgchart',
+        component: () => import('@/pages/orgchart/index'),
+        meta: { title: '组织图', icon: 'tree' }
+      }
+    ]
   },
 
   {
