@@ -1,4 +1,5 @@
 /*这是一个工厂函数导出app的实例*/
+import '@babel/polyfill'
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import createRouter from './router/index'
