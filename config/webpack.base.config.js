@@ -58,17 +58,20 @@ module.exports = function() {
 							stylus: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
 								{ loader: 'stylus-loader', options: isProd ? {} : { sourceMap: 'inline' } },
 							],
+							scss: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
+							{ loader: 'sass-loader', options: isProd ? {} : { sourceMap: true } },
+						  ]
 						}
 					}
 				},
-				 // js,jsx 转译
 				{
-					test: /\.(js|jsx)$/,
+				  test: /\.js$/,
 					use:{
 						loader: 'babel-loader'
 					},
 					exclude: /node_modules/,
 				},
+
 				{
 					test: /\.css$/,
 					use: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader']
@@ -87,7 +90,7 @@ module.exports = function() {
 					use: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
 						{
 							loader: 'sass-loader',
-							options: isProd ? {} : { sourceMap: 'inline' }
+							options: isProd ? {} : { sourceMap: true }
 						}
 					]
 				},
@@ -96,8 +99,17 @@ module.exports = function() {
 					use: 'json-loader',
 				},
 				{
+					test: /\.svg$/,
+					loader: 'svg-sprite-loader',
+					include: [resolve('src/icons')],
+					options: {
+						symbolId: 'icon-[name]'
+					}
+				},
+				{
 					test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
 					loader: 'url-loader',
+					exclude: [resolve('src/icons')],
 					options: {
 						limit: 10000,
 						name: 'images/[name].[hash:8].[ext]'

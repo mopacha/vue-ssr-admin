@@ -8,7 +8,9 @@ import { sync } from 'vuex-router-sync'
 import * as filters from '@/util/filters'
 import titleMixin from './util/title-mixin'
 import 'element-ui/lib/theme-chalk/index.css'
-import './styles/style.stylus'
+import '@/styles/index.scss' // global css
+
+import '@/icons' // icon
 
 Object.keys(filters).forEach((key) => {
     Vue.filter(key,filters[key])

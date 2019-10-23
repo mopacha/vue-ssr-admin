@@ -219,7 +219,7 @@ export default {
 
 </script>
 
-<style lang="stylus">
+<style lang="scss" scoped>
 .Tree {
   #editForm {
     display: none;

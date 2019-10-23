@@ -1,60 +1,48 @@
-import { fetchIndexTags, fetchEntriesByType, fetchRecommendByType } from '@/api/index'
+import Cookies from 'js-cookie'
 
-const app = {
-    state: {
-        activeType: null,   // 当前类型
-        indexTags: [],      // 当前页面的属性
-        indexList: {        // 当前页面的列表
-            top: [],        // 推荐
-            frontend: [],   // 前端
-            Andriod: [],    // 安卓
-            backend: [],    // 后端
-            ai: [],         // 人工智能
-            IOS: [],        // IOS
-            freebie: [],    // 工具资源
-            article: [],    // 阅读
-            devops: [],     // 运维
-        },
-    },
-    mutations: {
-        SET_ACTIVE_TYPE(state, { type }) {
-            state.activeType = type
-        },
-        SET_INDEX_TAGS(state, payload) {
-            state.indexTags = payload
-        },
-        SET_INDEX_LIST(state, { type, data }) {
-            state.indexList[type] = data
-        }
-    },
-    actions: {
-        FETCH_ACTIVE_TYPE(context, { type }) {
-            context.commit('SET_ACTIVE_TYPE', {
-                type
-            })
-        },
-        ENSURE_ACTIVE_ITEMS({ commit, dispatch, getters }) {
-            return dispatch('FETCH_INDEX_TAGS')
-                .then(res => {
-                    dispatch('FETCH_ACTIVE_TYPE', { type: res[0].attr })
-                })
-        },
-        FETCH_INDEX_TAGS(context) {
-            return fetchIndexTags()
-                .then(res => {
-                    context.commit('SET_INDEX_TAGS', res)
-                    return res
-                })
-        },
-        FETCH_INDEX_LIST_BY_TYPE({ commit }, { type, token }) {
-            let p = type == 'top' ? fetchRecommendByType(type) : fetchEntriesByType(type)
-            
-            return p
-                .then(res => {
-                    commit('SET_INDEX_LIST', { type, data: res })
-                })
-        }
-    }
+const state = {
+  sidebar: {
+    opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+    withoutAnimation: false
+  },
+  device: 'desktop'
 }
 
-export default app
+const mutations = {
+  TOGGLE_SIDEBAR: state => {
+    state.sidebar.opened = !state.sidebar.opened
+    state.sidebar.withoutAnimation = false
+    if (state.sidebar.opened) {
+      Cookies.set('sidebarStatus', 1)
+    } else {
+      Cookies.set('sidebarStatus', 0)
+    }
+  },
+  CLOSE_SIDEBAR: (state, withoutAnimation) => {
+    Cookies.set('sidebarStatus', 0)
+    state.sidebar.opened = false
+    state.sidebar.withoutAnimation = withoutAnimation
+  },
+  TOGGLE_DEVICE: (state, device) => {
+    state.device = device
+  }
+}
+
+const actions = {
+  toggleSideBar({ commit }) {
+    commit('TOGGLE_SIDEBAR')
+  },
+  closeSideBar({ commit }, { withoutAnimation }) {
+    commit('CLOSE_SIDEBAR', withoutAnimation)
+  },
+  toggleDevice({ commit }, device) {
+    commit('TOGGLE_DEVICE', device)
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}
