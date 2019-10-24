@@ -4,7 +4,7 @@
   "description": "based on vue2 koa2 webpack4 for ssr render",
   "scripts": {
     "dev": "node server/index.js",
-    "start": "npm run build && cross-env NODE_ENV=production npm run dev",
+    "start": "cross-env NODE_ENV=production npm run dev",
     "fix-eslint": "eslint client --ext .js,.vue --fix",
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config config/webpack.client.config.js --progress --hide-modules",

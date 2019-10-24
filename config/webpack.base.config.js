@@ -17,6 +17,12 @@ function resolve(dir) {
   return path.resolve(process.cwd(), dir)
 }
 
+class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
+  getCssChunkObject(mainChunk) {
+    return {}
+  }
+}
+
 
 module.exports = function() {
 	const config = {
@@ -28,7 +34,7 @@ module.exports = function() {
 			// 生成的文件名, [name] 即为entry配置中的key
 		  filename: '[name].[chunkhash:8].js',
 			// 异步模块文件名
-			chunkFilename: '[id].js',
+			chunkFilename: '[id].[chunkhash:8].js',
 			publicPath: '/dist/'
 		},
 
@@ -54,11 +60,11 @@ module.exports = function() {
 							preserveWhitespace: false
 						},
 						loaders: {
-							css: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader'],
-							stylus: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
+							css: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader'],
+							stylus: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
 								{ loader: 'stylus-loader', options: isProd ? {} : { sourceMap: 'inline' } },
 							],
-							scss: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
+							scss: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
 							{ loader: 'sass-loader', options: isProd ? {} : { sourceMap: true } },
 						  ]
 						}
@@ -74,11 +80,11 @@ module.exports = function() {
 
 				{
 					test: /\.css$/,
-					use: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader']
+					use: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader']
 				},
 				{
 					test: /\.(styl|stylus)$/,
-					use: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
+					use: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
 						{
 							loader: 'stylus-loader',
 							options: isProd ? {} : { sourceMap: 'inline' }
@@ -87,7 +93,7 @@ module.exports = function() {
 				},
 				{
 					test: /\.scss$/,
-					use: [isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
+					use: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
 						{
 							loader: 'sass-loader',
 							options: isProd ? {} : { sourceMap: true }
@@ -145,16 +151,16 @@ module.exports = function() {
       }),
       new FriendlyErrorsPlugin(),
       new VueLoaderPlugin(),
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
-      })
+      //new webpack.optimize.LimitChunkCountPlugin({
+      //  maxChunks: 1
+      //})
     ],
 	}
 
 	if (isProd) {
     config.plugins = (config.plugins || []).concat([
       // 分离css文件
-      new MiniCssExtractPlugin({
+      new ServerMiniCssExtractPlugin({
         filename: '[name].[chunkhash:8].css',
         chunkFilename: '[id].[chunkhash:8].css',
       }),
