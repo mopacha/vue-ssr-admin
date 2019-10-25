@@ -1,11 +1,11 @@
 const path = require('path')
-const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const appConfig = require('./../app.config')
 const isProd = process.env.NODE_ENV === 'production'
@@ -23,18 +23,53 @@ class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
   }
 }
 
-
 module.exports = function() {
 	const config = {
 		devtool: isProd ? false : '#cheap-module-source-map',
-			// 输出模块配置
+		optimization:{
+			minimizer:[
+				// 自定义js优化配置，
+        new TerserPlugin({
+          terserOptions: {
+            cache: false,
+            parallel: true, // 开启并行压缩，充分利用cpu
+            sourceMap: true,
+            extractComments: true, // 移除注释
+            compress: {
+              unused: true,
+              warnings: false,
+              drop_debugger: true
+            },
+            output: {
+              comments: false,
+              ascii_only: true
+            }
+          }
+        }),
+				// 用于优化css文件
+				new OptimizeCssAssetsPlugin({
+					  assetNameRegExp: /\.css$/g,
+						cssProcessor: require('cssnano'),
+						cssProcessorOptions: {
+							safe: true,
+							autoprefixer: { disable: true }, 	// postcss那边已经处理过autoprefixer了，这里把它关掉，否则会导致浏览器前缀兼容范围问题
+							mergeLonghand: false,
+							discardComments: {
+								removeAll: true // 移除注释
+							}
+						},
+						canPrint: true
+				})
+			]
+		},
+		// 输出模块配置
 		output: {
 			// 输出到这个目录下
 			path: resolve('dist'),
 			// 生成的文件名, [name] 即为entry配置中的key
 		  filename: '[name].[chunkhash:8].js',
 			// 异步模块文件名
-			chunkFilename: '[id].[chunkhash:8].js',
+			//chunkFilename: '[id].[chunkhash:8].js',
 			publicPath: '/dist/'
 		},
 
@@ -161,23 +196,13 @@ module.exports = function() {
     config.plugins = (config.plugins || []).concat([
       // 分离css文件
       new ServerMiniCssExtractPlugin({
-        filename: '[name].[chunkhash:8].css',
-        chunkFilename: '[id].[chunkhash:8].css',
-      }),
-      // 限制文件最小KB
-      new webpack.optimize.MinChunkSizePlugin({
-        minChunkSize: 20000
-      }),
-      new OptimizeCssAssetsPlugin(
-        {
-          cssProcessor: require('cssnano'),
-          cssProcessorOptions: {
-            // postcss那边已经处理过autoprefixer了，这里把它关掉，否则会导致浏览器前缀兼容范围问题
-            autoprefixer: false,
-            discardComments: { removeAll: true }
-          },
-        }
-      ),
+        filename: '[name].[chunkhash:8].min.css',
+			  //chunkFilename: '[name].[chunkhash:8].css',
+			}),
+			// 限制文件最小KB
+      //new webpack.optimize.MinChunkSizePlugin({
+      //  minChunkSize: 20000
+     // }),
     ])
 	}
 	return config

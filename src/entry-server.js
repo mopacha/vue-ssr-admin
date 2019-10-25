@@ -16,11 +16,11 @@ export default (context) => {
             console.log(`entry-server len`,matcheds.length)
 
             // set cookie
-            requrest.createApi({cookie:context.cookie})
+           requrest.createApi({cookie:context.cookie})
 
-            Promise.all(matcheds.map(Component => {
-                if (Component.asyncData) {
-                    return Component.asyncData({
+            Promise.all(matcheds.map(component => {
+                if (component.asyncData) {
+                    return component.asyncData({
                         store,
                         route: router.currentRoute
                     })
