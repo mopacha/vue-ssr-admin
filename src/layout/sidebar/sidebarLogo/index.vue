@@ -31,7 +31,7 @@ export default {
   name: 'SidebarLogo',
   data() {
     return {
-      title: 'Vue SSR Template',
+      title: 'VUE-SSR',
       logo: require('@/assets/logo/logo.png')
     }
   },
@@ -40,7 +40,7 @@ export default {
     ...mapGetters([
       'sidebar'
     ]),
-		isCollapse() {
+    isCollapse() {
       return !this.sidebar.opened
     }
   }

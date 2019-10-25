@@ -23,7 +23,8 @@ export default {
     margin: 30px;
   }
   &-text {
-    font-size: 30px;
+		font-size: 30px;
+		color: blue;
     line-height: 46px;
   }
 }
