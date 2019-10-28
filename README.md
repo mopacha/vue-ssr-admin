@@ -48,4 +48,11 @@ pm2的用法和参数说明可以参考[pm2.md](./pm2.md)，也可参考[PM2实�
 
 
 
+### 待优化
+
+#### 1.svg 渲染
+
+问题：svg-sprite-loader:目前只是客户端生成，服务端渲染svg icon 慢，目前是手动copy client生成的 svg symbol 到template
+优化思路： server side read icon file and 生成svg symbol 添加到template
+
 
