@@ -1,6 +1,8 @@
 <template>
   <div class="home-container">
-    <div class="home-text">name: {{ name }}</div>
+    <div v-for="i in 1">
+      <div class="home-text">name: {{ name }} {{i}}</div>
+    </div>
   </div>
 </template>
 
@@ -19,13 +21,14 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  &-container {
-    margin: 30px;
+   &-container {
+		 padding: 20px;
+		 background-color: #fff;
   }
+
   &-text {
-		font-size: 30px;
-		color: blue;
-    line-height: 46px;
+    font-size: 30px;
+    color: blue;
   }
 }
 </style>
