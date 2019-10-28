@@ -37,7 +37,7 @@ export default {
 	name: 'Navbar',
 	data() {
 		return {
-			headImg: require('@/assets/logo/user.png')
+			headImg: require('@/assets/logo/user.svg')
 		}
 	},
   components: {

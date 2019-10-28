@@ -1,15 +1,3 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Layout from '@/layout'
-
-//fix bug  Uncaught (in promise) NavigationDuplicated {_name: "NavigationDuplicated", name: "NavigationDuplicated"}
-const routerPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(error=> error)
-}
-
-Vue.use(Router)
-
 export const constantRoutes = [
   {
     path: '/login',
@@ -35,7 +23,40 @@ export const constantRoutes = [
     }]
   },
 
- 
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: '例子', icon: 'example' },
+    children: [
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/pages/table/index'),
+        meta: { title: '表格', icon: 'table' }
+      },
+      {
+        path: 'tree',
+        name: 'Tree',
+        component: () => import('@/pages/tree/index'),
+        meta: { title: '树图', icon: 'tree' }
+      }
+    ]
+  },
+
+	{
+    path: '/orgchart',
+    component: Layout,
+    children: [
+      {
+        path: 'orgchart',
+        name: 'Orgchart',
+        component: () => import('@/pages/orgchart/index'),
+        meta: { title: '组织图', icon: 'tree' }
+      }
+    ]
+  },
 
   {
     path: '/nested',
@@ -43,8 +64,8 @@ export const constantRoutes = [
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: 'Menu Manage',
-      icon: 'bot'
+      title: 'Menu',
+      icon: 'nested'
     },
     children: [
       {
@@ -95,32 +116,6 @@ export const constantRoutes = [
     ]
 	},
 
-	 
-	{
-    path: '/orgchart',
-    component: Layout,
-    children: [
-      {
-        path: 'orgchart',
-        name: 'Orgchart',
-        component: () => import('@/pages/orgchart/index'),
-        meta: { title: '策略详情', icon: 'strategy' }
-      }
-    ]
-  },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
-
-
-export default () => {
-    const router = new Router({
-        mode: 'history',
-        scrollBehavior(to, from, savedPosition) {
-            return { x: 0, y: 0 }
-        },
-        routes: constantRoutes
-    })
-    return router
-}
