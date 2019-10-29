@@ -1,6 +1,7 @@
 <template>
   <div class="login-container">
-    <div class="left">
+    <div class="left"
+         v-if="showLeft">
       <dir class="content">
         <div class="title">
           <span class="wel">Welcome to </span> <span class="the">VUE-SSR</span>
@@ -65,8 +66,19 @@
 <script>
 import { validUsername } from '@/util/validate'
 
+
 export default {
   name: 'Login',
+
+  mounted() {
+    this.screenWidth = document.body.clientWidth
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth
+      })()
+    }
+  },
+
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -83,6 +95,7 @@ export default {
       }
     }
     return {
+			screenWidth: 700,
       loginForm: {
         username: '',
         password: ''
@@ -102,6 +115,11 @@ export default {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
+    }
+	},
+	computed: {
+    showLeft: function () {
+      return this.screenWidth > 600
     }
   },
   methods: {
