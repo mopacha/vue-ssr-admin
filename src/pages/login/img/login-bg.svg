@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="740px" height="800px" viewBox="0 0 740 800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>左侧Banner-bg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="1.13686838e-13" y="0" width="740" height="800"></rect>
+        <linearGradient x1="47.2454213%" y1="80.2165226%" x2="-5.93586563%" y2="15.6383924%" id="linearGradient-3">
+            <stop stop-color="#281B5A" offset="0%"></stop>
+            <stop stop-color="#701E80" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="13.5001925%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#110542" offset="0%"></stop>
+            <stop stop-color="#312367" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-33.720338%" y1="50%" x2="69.1082654%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#828DFF" offset="0%"></stop>
+            <stop stop-color="#4350DB" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="109.484977%" y2="0%" id="linearGradient-6">
+            <stop stop-color="#EE18C2" offset="0%"></stop>
+            <stop stop-color="#701E80" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="23.1298828%" y1="100%" x2="100%" y2="0%" id="linearGradient-7">
+            <stop stop-color="#312072" offset="0%"></stop>
+            <stop stop-color="#281B5A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-33.720338%" y1="50%" x2="69.1082654%" y2="50%" id="linearGradient-8">
+            <stop stop-color="#828DFF" offset="0%"></stop>
+            <stop stop-color="#4350DB" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="109.484977%" y2="0%" id="linearGradient-9">
+            <stop stop-color="#EE18C2" offset="0%"></stop>
+            <stop stop-color="#701E80" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="109.484977%" y2="0%" id="linearGradient-10">
+            <stop stop-color="#EE18C2" offset="0%"></stop>
+            <stop stop-color="#701E80" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="0-其他" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0-0-1-Login">
+            <g id="左侧Banner-bg" transform="translate(-0.000000, 0.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="蒙版" fill="#281B5A" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <path d="M168.414062,546.136719 C235.113281,684 350.496094,727.109375 412.027344,727.109375 C441,727.109375 491.132812,753.726562 499.066406,782.101563 C504.355469,801.018229 504.355469,806.984375 499.066406,800 L0,800 L0,455.417969 C67.8098958,423.988281 123.947917,454.227865 168.414062,546.136719 Z" id="路径" fill="url(#linearGradient-3)" mask="url(#mask-2)"></path>
+                <path d="M56.6340244,104.627036 C69.0796503,125.709968 91.9154194,137.558087 124.724522,138.703807 C161.391625,139.98425 209.456521,182.752622 211.763585,193.695994 C213.301627,200.991576 213.079101,207.363908 211.096005,212.812993 L-4,204.786798 L3.29099564,-4 C30.5559308,54.3627366 48.3369404,90.5717486 56.6340244,104.627036 Z" id="路径" fill="url(#linearGradient-4)" mask="url(#mask-2)" transform="translate(104.385658, 104.406496) rotate(88.000000) translate(-104.385658, -104.406496) "></path>
+                <rect id="矩形" fill="url(#linearGradient-5)" mask="url(#mask-2)" transform="translate(577.000000, 41.000000) rotate(-45.000000) translate(-577.000000, -41.000000) " x="432" y="1" width="290" height="80" rx="40"></rect>
+                <rect id="矩形" fill="url(#linearGradient-6)" mask="url(#mask-2)" x="107" y="132" width="40" height="40" rx="20"></rect>
+                <rect id="矩形备份-4" fill="url(#linearGradient-7)" mask="url(#mask-2)" x="302" y="403" width="80" height="80" rx="40"></rect>
+                <rect id="矩形备份-3" fill="url(#linearGradient-8)" mask="url(#mask-2)" x="222" y="360" width="10" height="10" rx="5"></rect>
+                <rect id="矩形备份" fill="url(#linearGradient-5)" mask="url(#mask-2)" transform="translate(302.000000, 672.000000) rotate(-45.000000) translate(-302.000000, -672.000000) " x="157" y="632" width="290" height="80" rx="40"></rect>
+                <rect id="矩形备份-2" fill="url(#linearGradient-9)" mask="url(#mask-2)" transform="translate(694.000000, 700.000000) rotate(-45.000000) translate(-694.000000, -700.000000) " x="549" y="680" width="290" height="40" rx="20"></rect>
+                <rect id="矩形备份-2" fill="url(#linearGradient-10)" mask="url(#mask-2)" transform="translate(599.000000, 264.000000) rotate(-45.000000) translate(-599.000000, -264.000000) " x="454" y="259" width="290" height="10" rx="5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

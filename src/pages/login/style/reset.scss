@@ -1,0 +1,31 @@
+/* 修复input 背景不协调 和光标变色 */
+$bg: #fff;
+$light_gray: #5b627a;
+$cursor: #5b627a;
+
+@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
+  .login-container .el-input input {
+    color: $cursor;
+  }
+}
+
+/* reset element-ui css */
+.login-container {
+  .el-input {
+		display: inline-block;
+		height: 40px;
+    input {
+      height: 40px;
+      padding-left: 50px;
+      color: $light_gray;
+      caret-color: $cursor;
+      &:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px $bg inset !important;
+        -webkit-text-fill-color: $cursor !important;
+      }
+    }
+  }
+  .el-form-item {
+   // margin-bottom: 25px; //加这个属性 会闪 ，
+  }
+}
