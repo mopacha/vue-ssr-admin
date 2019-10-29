@@ -5,6 +5,9 @@ const base = require('./webpack.base.config')()
 const isProd = process.env.NODE_ENV === 'production'
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+const Smp = new SpeedMeasurePlugin()
+
 const config = merge(base, {
   entry: {
 		app: path.join(process.cwd(), 'src/entry-client.js'),
@@ -46,4 +49,4 @@ const config = merge(base, {
   ]
 })
 
-module.exports = config
+module.exports = Smp.wrap(config)

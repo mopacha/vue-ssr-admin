@@ -5,7 +5,7 @@ const nodeExternals = require('webpack-node-externals')
 const base = require('./webpack.base.config')()
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
-module.exports = merge(base, {
+const config = merge(base, {
 	mode: 'production',
 	// 指定生成后的运行环境在node
   target: 'node',
@@ -37,3 +37,6 @@ module.exports = merge(base, {
     new VueSSRServerPlugin()
   ]
 })
+
+
+module.exports = config

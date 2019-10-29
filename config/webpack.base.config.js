@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
@@ -6,6 +7,8 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const TimeFixPlugin = require('time-fix-plugin')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const appConfig = require('./../app.config')
 const isProd = process.env.NODE_ENV === 'production'
@@ -31,7 +34,7 @@ module.exports = function() {
 				// 自定义js优化配置，
         new TerserPlugin({
           terserOptions: {
-            cache: false,
+            cache: true,
             parallel: true, // 开启并行压缩，充分利用cpu
             sourceMap: true,
             extractComments: true, // 移除注释
@@ -204,6 +207,13 @@ module.exports = function() {
       //  minChunkSize: 20000
      // }),
     ])
+	} else {
+		config.plugins = (config.plugins || []).concat([
+			new webpack.NamedModulesPlugin(),
+			new TimeFixPlugin(),
+			new ProgressBarPlugin()
+    ])
 	}
+
 	return config
 }
