@@ -1,6 +1,4 @@
-/**
- * vue koa2 ssr中间件
- */
+//ssr中间件
 const fs = require('fs')
 const path = require('path')
 const LRU = require('lru-cache')
@@ -14,7 +12,7 @@ module.exports = function (app, uri) {
   const renderData = (ctx, renderer) => {
     const context = {
       url: ctx.url,
-      title: 'Vue Koa2 SSR',
+      title: 'VUE-SSR',
       cookies: ctx.request.headers.cookie
     }
     return new Promise((resolve, reject) => {

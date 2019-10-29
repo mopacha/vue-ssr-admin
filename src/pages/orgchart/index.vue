@@ -108,7 +108,6 @@ export default {
       });
     },
     initChart() {
-
       const _vthis = this
       let editForm = function () {
         this.nodeId = null
@@ -223,11 +222,10 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .Tree {
   #editForm {
     display: none;
-
     .el-dialog__header {
       background: #039be5;
       padding: 15px 20px;
