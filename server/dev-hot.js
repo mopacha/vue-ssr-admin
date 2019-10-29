@@ -1,16 +1,14 @@
-/**
- * koa2 webpack4 开发服务
- */
+//# koa2开发模式实现hot热更新
 const path = require('path')
 const MFS = require('memory-fs')
 const webpack = require('webpack')
-const clientConfig = require('./webpack.client.config')
-const serverConfig = require('./webpack.server.config')
+const clientConfig = require('../config/webpack.client.config')
+const serverConfig = require('../config/webpack.server.config')
 const webpackDevMiddleware = require('koa-webpack-dev-middleware')
 const webpackHotMiddleware = require('koa-webpack-hot-middleware')
 const convert = require('koa-convert')
 
-const opn = require('opn')
+const open = require('open')
 const readFile = (fs, file) => fs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8')
 
 module.exports = function setupDevServer(app, uri, cb) {
@@ -90,6 +88,6 @@ module.exports = function setupDevServer(app, uri, cb) {
 
   devMiddleware.waitUntilValid(() => {
     console.log('\n> Listening at ' + uri + '\n')
-    opn(uri)
+    open(uri)
   })
 }

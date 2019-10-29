@@ -1,7 +1,5 @@
 
-/**
- * eslint规则配置
- */
+//eslint规则配置
 module.exports = {
   root: true,
   env: {

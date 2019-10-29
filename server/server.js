@@ -1,3 +1,4 @@
+//koa2服务详细配置
 const Koa = require('koa')
 const koaCompress = require('koa-compress')()
 

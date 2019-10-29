@@ -46,5 +46,4 @@ const config = merge(base, {
   ]
 })
 
-
 module.exports = config

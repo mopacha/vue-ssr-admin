@@ -1,14 +1,13 @@
-//ssr中间件
+//vue ssr的koa2中间件。匹配路由、请求接口生成dom，实现SSR
 const fs = require('fs')
 const path = require('path')
 const LRU = require('lru-cache')
 const { createBundleRenderer } = require('vue-server-renderer')
 const isProd = process.env.NODE_ENV === 'production'
 const proxyConfig = require('./../app.config').proxy
-const setUpDevServer = require('./../config/setup-dev-server')
+const devHot = require('./dev-hot')
 
 module.exports = function (app, uri) {
-
   const renderData = (ctx, renderer) => {
     const context = {
       url: ctx.url,
@@ -52,7 +51,7 @@ module.exports = function (app, uri) {
   } else {
 		// dev mode
 		console.log("NODE_ENV:  development")
-    setUpDevServer(app, uri, (bundle, options) => {
+    devHot(app, uri, (bundle, options) => {
         try {
           renderer = createRenderer(bundle, options)
         } catch (e) {
@@ -64,7 +63,7 @@ module.exports = function (app, uri) {
   app.use(async (ctx, next) => {
     if (!renderer) {
       ctx.type = 'html'
-      return ctx.body = 'waiting for compilation... refresh in a moment.';
+      return ctx.body = '编译中...稍后刷新页面...';
     }
     if (Object.keys(proxyConfig).findIndex(vl => ctx.url.startsWith(vl)) > -1) {
       return next()
