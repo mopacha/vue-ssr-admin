@@ -3,8 +3,8 @@ import { getToken, setToken, removeToken } from '@/util/auth'
 
 const state = {
   token: getToken(),
-  name: '',
-  avatar: ''
+	name: '',
+	userInfo: null
 }
 
 const mutations = {
@@ -13,10 +13,10 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
-  }
+	},
+	SET_USERINFO: (state, data) => {
+    state.userInfo = data
+	}
 }
 
 const actions = {
@@ -25,9 +25,10 @@ const actions = {
 		const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(res => {
-        commit('SET_TOKEN', res.info)
-        setToken( res.info)
-        resolve(res)
+				const {data} = res
+        commit('SET_TOKEN', data.token)
+        setToken(data.token)
+        resolve()
       }).catch(error => {
         reject(error)
       })
@@ -37,20 +38,10 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
-
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
-
-        const { name, avatar } = data
-
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
+      getInfo(state.token).then(res => {
+        const { data } = res
+				commit('SET_USERINFO', data)
+				resolve()
       })
     })
   },

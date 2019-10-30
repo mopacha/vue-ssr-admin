@@ -1,8 +1,6 @@
 <template>
   <div class="home-container">
-    <div v-for="i in 1">
-      <div class="home-text">name: {{ name }} {{i}}</div>
-    </div>
+    <div class="home-text">welcome  <span class="name"> {{ userInfo.username }}</span> </div>
   </div>
 </template>
 
@@ -11,9 +9,13 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
+  asyncData({ store, router }) {
+    // 触发 action 后，会返回 Promise
+    return store.dispatch('user/getInfo')
+  },
   computed: {
     ...mapGetters([
-      'name'
+      'userInfo'
     ])
   }
 }
@@ -21,14 +23,17 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-   &-container {
-		 padding: 20px;
-		 background-color: #fff;
+  &-container {
+    padding: 20px;
+    background-color: #fff;
   }
 
   &-text {
     font-size: 30px;
-    color: blue;
+		color: #97a8be;
+		.name{
+			color: #6874D0;
+		}
   }
 }
 </style>
