@@ -63,6 +63,7 @@ module.exports = function () {
 					proxyReqOpts.port = parsedTarget.port
 					proxyReqOpts.https = parsedTarget.protocol === 'https:'
 
+				//	console.log('proxyReqOpts headers cookie is:' + JSON.stringify(proxyReqOpts.headers.cookie))
 					// 去掉Referer头，否则可能会造成CSRF问题，影响开发
 					if (!isProd) {
 						delete proxyReqOpts.headers.Referer
@@ -80,7 +81,7 @@ module.exports = function () {
          * @return {Promise.<*>} *
          */
 				async userResDecorator(proxyRes, proxyResData, ctx) {
-					// logger.info('ProxyRes headers:', '\n', JSON.stringify(ctx.response.headers, null, 2))
+				  //logger.info('ProxyRes headers:', '\n', JSON.stringify(ctx.response.headers, null, 2))
 					const location = `${ctx._proxyTarget}${ctx.url}`
 					logger.info(`Proxy request '${location}' completed(${proxyRes.statusCode}), costing ${Date.now() - ctx._proxyStartTime}ms.`)
 					return proxyResData
