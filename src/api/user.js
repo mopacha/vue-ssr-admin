@@ -1,24 +1,15 @@
-import request from '@/util/request'
+import http from '@/util/http'
 
 export function login(data) {
-  return request({
-    url: '/user/login',
-    method: 'post',
-    data
-  })
+  return http.post('/user/login',data)
 }
 
 export function getInfo(token) {
-  return request({
-    url: '/user/info',
-    method: 'get',
+  return http.get('/user/info',{
     params: { token }
   })
 }
 
 export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
-  })
+  return http.post('/user/logout')
 }

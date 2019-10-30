@@ -1,9 +1,7 @@
-import request from '@/util/request'
+import http from '@/util/http'
 
 export function getList(params) {
-  return request({
-    url: '/table/list',
-    method: 'get',
+  return http.get('/table/list',{
     params
   })
 }
