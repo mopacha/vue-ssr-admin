@@ -64,12 +64,9 @@
   </div>
 </template>
 <script>
-import { validUsername } from '@/util/validate'
-
 
 export default {
   name: 'Login',
-
   mounted() {
     this.screenWidth = document.body.clientWidth
     window.onresize = () => {
@@ -81,7 +78,7 @@ export default {
 
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (!value) {
         callback(new Error('用户名不能为空'))
       } else {
         callback()

@@ -5,8 +5,8 @@
 const urlUtils = require('url')
 const koaHttpProxy = require('koa-better-http-proxy')
 const compose = require('koa-compose')
-const appConfig = require('./../../app.config')
-const logger = require('./../logger/koa-logger')('proxyMiddleWare')
+const appConfig = require('../../app.config')
+const logger = require('../logger/koa-logger')('proxyMiddleWare')
 
 const isProd = process.env.NODE_ENV === 'production'
 

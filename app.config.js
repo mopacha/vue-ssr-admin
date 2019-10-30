@@ -6,6 +6,9 @@ const constants = require('./constants')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
+	//静态资源url
+	staticHost: constants.staticHost,
+	staticPath: constants.staticPath,
   // 主服务启动端口
   appPort: process.env.PORT || 3003,
   // 代理配置，可支持多个代理，key为前缀，命中后，会把前缀去掉，转发到代理服务器

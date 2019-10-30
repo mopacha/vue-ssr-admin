@@ -14,7 +14,7 @@ const appConfig = require('./../app.config')
 const isProd = process.env.NODE_ENV === 'production'
 // 版本号
 const appVersion = new Date().getTime()
-const favicon = path.join(process.cwd(), 'favicon.ico')
+const favicon = path.join(process.cwd(), 'public/favicon.ico')
 
 function resolve(dir) {
   return path.resolve(process.cwd(), dir)
@@ -68,12 +68,12 @@ module.exports = function() {
 		// 输出模块配置
 		output: {
 			// 输出到这个目录下
-			path: resolve('dist'),
+			path: resolve(`dist${appConfig.staticPath}/`),
 			// 生成的文件名, [name] 即为entry配置中的key
 		  filename: '[name].[chunkhash:8].js',
 			// 异步模块文件名
 			//chunkFilename: '[id].[chunkhash:8].js',
-			publicPath: '/dist/'
+			publicPath: `${appConfig.staticHost}${appConfig.staticPath}/` 
 		},
 
 		// 寻找模块时的一些缺省设置

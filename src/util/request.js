@@ -15,7 +15,7 @@ export default {
 			baseURL:'http://test.mac.com',
 			timeout:10000,
 			headers:{
-				// token:this.config.cookie
+				 token:this.config.cookie
 			}
 		})
 

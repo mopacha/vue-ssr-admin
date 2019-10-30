@@ -4,15 +4,17 @@ const path = require('path')
 const LRU = require('lru-cache')
 const { createBundleRenderer } = require('vue-server-renderer')
 const isProd = process.env.NODE_ENV === 'production'
-const proxyConfig = require('./../app.config').proxy
 const devHot = require('./dev-hot')
+const appConfig = require('../app.config')
+
+const proxyConfig =appConfig.proxy
 
 module.exports = function (app, uri) {
   const renderData = (ctx, renderer) => {
     const context = {
       url: ctx.url,
       title: 'VUE-SSR',
-      cookies: ctx.request.headers.cookie
+      cookies: ctx.headers.cookie
     }
     return new Promise((resolve, reject) => {
       renderer.renderToString(context, (err, html) => {
@@ -41,9 +43,9 @@ module.exports = function (app, uri) {
   let renderer
   if (isProd) {
     // prod mode
-    const template = fs.readFileSync(resolve('dist/index.html'), 'utf-8')
-    const bundle = require(resolve('dist/vue-ssr-server-bundle.json'))
-    const clientManifest = require(resolve('dist/vue-ssr-client-manifest.json'))
+    const template = fs.readFileSync(resolve(`dist${appConfig.staticPath}/index.html`), 'utf-8')
+    const bundle = require(resolve(`dist${appConfig.staticPath}/vue-ssr-server-bundle.json`))
+    const clientManifest = require(resolve(`dist${appConfig.staticPath}/vue-ssr-client-manifest.json`))
     renderer = createRenderer(bundle, {
       template,
       clientManifest
