@@ -9,11 +9,11 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 //const Smp = new SpeedMeasurePlugin()
 
 const config = merge(base, {
-  entry: {
+	entry: {
 		app: path.join(process.cwd(), 'src/entry-client.js'),
 	},
 	optimization: {
-		splitChunks:{
+		splitChunks: {
 			chunks: "all",
 			cacheGroups: {
 				vendors: {
@@ -38,15 +38,15 @@ const config = merge(base, {
 		}
 	},
 	mode: isProd ? 'production' : 'development',
- 
-  plugins: [
-    // strip dev-only code in Vue source
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.VUE_ENV': '"client"'
-    }),
-    new VueSSRClientPlugin()
-  ]
+
+	plugins: [
+		// strip dev-only code in Vue source
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+			'process.env.VUE_ENV': '"client"'
+		}),
+		new VueSSRClientPlugin()
+	]
 })
 
 module.exports = config

@@ -1,7 +1,7 @@
 module.exports = {
 	presets: [
 		[
-		 '@babel/preset-env',
+			'@babel/preset-env',
 			{
 				"modules": false
 			}
@@ -12,7 +12,7 @@ module.exports = {
 		['@babel/plugin-syntax-jsx'],
 		['@babel/plugin-syntax-dynamic-import'],
 		[
-			 'component',
+			'component',
 			{
 				libraryName: 'element-ui',
 				styleLibraryName: 'theme-chalk'

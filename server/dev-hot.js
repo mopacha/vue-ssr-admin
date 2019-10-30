@@ -12,80 +12,80 @@ const open = require('open')
 const readFile = (fs, file) => fs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8')
 
 module.exports = function setupDevServer(app, uri, cb) {
-  let bundle
-  let template
+	let bundle
+	let template
 
-  const update = () => {
-    if (bundle && template) {
-      cb(bundle, {
-        template,
-      })
-    }
-  }
+	const update = () => {
+		if (bundle && template) {
+			cb(bundle, {
+				template,
+			})
+		}
+	}
 
-  //  client
-  clientConfig.entry.app = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true', clientConfig.entry.app]
-  clientConfig.output.filename = '[name].js'
-  clientConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  )
+	//  client
+	clientConfig.entry.app = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true', clientConfig.entry.app]
+	clientConfig.output.filename = '[name].js'
+	clientConfig.plugins.push(
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoEmitOnErrorsPlugin()
+	)
 
-  // webpack config
-  const clientCompiler = webpack(clientConfig)
+	// webpack config
+	const clientCompiler = webpack(clientConfig)
 
-  // dev middleware
-  const devMiddleware = webpackDevMiddleware(clientCompiler, {
-    publicPath: clientConfig.output.publicPath,
-    noInfo: true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    stats: {
-      colors: true,
-    },
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: true
-    },
-  })
+	// dev middleware
+	const devMiddleware = webpackDevMiddleware(clientCompiler, {
+		publicPath: clientConfig.output.publicPath,
+		noInfo: true,
+		headers: { 'Access-Control-Allow-Origin': '*' },
+		stats: {
+			colors: true,
+		},
+		watchOptions: {
+			aggregateTimeout: 300,
+			poll: true
+		},
+	})
 
-  app.use(convert(devMiddleware))
+	app.use(convert(devMiddleware))
 
-  // hot update
-  clientCompiler.hooks.done.tap('BuildStatsPlugin', stats => {
-	
-    const fs = devMiddleware.fileSystem
-    stats = stats.toJson()
-    stats.errors.forEach(err => console.error(err))
-    stats.warnings.forEach(err => console.warn(err))
-    if (stats.errors.length) return
+	// hot update
+	clientCompiler.hooks.done.tap('BuildStatsPlugin', stats => {
 
-    console.log('\nclient-dev...\n')
+		const fs = devMiddleware.fileSystem
+		stats = stats.toJson()
+		stats.errors.forEach(err => console.error(err))
+		stats.warnings.forEach(err => console.warn(err))
+		if (stats.errors.length) return
 
-    let filePath = path.join(clientConfig.output.path, 'index.html')
-    if (fs.existsSync(filePath)) {
-      // 读取内存模板
-      template = readFile(fs, 'index.html')
-    }
-    update()
-  })
+		console.log('\nclient-dev...\n')
 
-  // hot middleware
-  app.use(convert(webpackHotMiddleware(clientCompiler)))
+		let filePath = path.join(clientConfig.output.path, 'index.html')
+		if (fs.existsSync(filePath)) {
+			// 读取内存模板
+			template = readFile(fs, 'index.html')
+		}
+		update()
+	})
 
-  // server
-  const serverCompiler = webpack(serverConfig)
-  const mfs = new MFS()
-  serverCompiler.outputFileSystem = mfs
-  serverCompiler.watch({}, (err, stats) => {
-    if (err) throw err
-    stats = stats.toJson()
-    if (stats.errors.length) return
-    bundle = JSON.parse(readFile(mfs, 'vue-ssr-server-bundle.json'))
-    update()
-  })
+	// hot middleware
+	app.use(convert(webpackHotMiddleware(clientCompiler)))
 
-  devMiddleware.waitUntilValid(() => {
-    console.log('\n> Listening at ' + uri + '\n')
-    open(uri)
-  })
+	// server
+	const serverCompiler = webpack(serverConfig)
+	const mfs = new MFS()
+	serverCompiler.outputFileSystem = mfs
+	serverCompiler.watch({}, (err, stats) => {
+		if (err) throw err
+		stats = stats.toJson()
+		if (stats.errors.length) return
+		bundle = JSON.parse(readFile(mfs, 'vue-ssr-server-bundle.json'))
+		update()
+	})
+
+	devMiddleware.waitUntilValid(() => {
+		console.log('\n> Listening at ' + uri + '\n')
+		open(uri)
+	})
 }

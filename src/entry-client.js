@@ -10,26 +10,26 @@ NProgress.configure({ easing: 'ease', speed: 500 })
 
 // a global mixin that calls `asyncData` when a route component's params change
 Vue.mixin({
-  beforeRouteUpdate(to, from, next) {
-    const { asyncData } = this.$options
-    if (asyncData) {
-      asyncData({ store: this.$store, route: to })
-        .then(next)
-        .catch(next)
-    } else {
-      next()
-    }
-  }
+	beforeRouteUpdate(to, from, next) {
+		const { asyncData } = this.$options
+		if (asyncData) {
+			asyncData({ store: this.$store, route: to })
+				.then(next)
+				.catch(next)
+		} else {
+			next()
+		}
+	}
 })
 
-const {app, router, store} = createApp()
+const { app, router, store } = createApp()
 
 // prime the store with server-initialized state.
 // the state is determined during SSR and inlined in the page markup.
 if (window.__INITIAL_STATE__) {
-  store.replaceState(window.__INITIAL_STATE__)
-  // 客户端和服务端保持一致
-//  store.state.$http = http
+	store.replaceState(window.__INITIAL_STATE__)
+	// 客户端和服务端保持一致
+	//  store.state.$http = http
 }
 
 
@@ -45,21 +45,21 @@ router.onReady(() => {
 		// 同父不同子
 		let diffed = false
 		const activated = matched.filter((c, i) => {
-				return diffed || (diffed = (prevMatched[i] !== c))
+			return diffed || (diffed = (prevMatched[i] !== c))
 		})
 
 		const asyncDataHooks = activated.map(c => c.asyncData).filter(_ => _)
-    if (!asyncDataHooks.length) {
-      return next()
+		if (!asyncDataHooks.length) {
+			return next()
 		}
 		// 这里如果有加载指示器(loading indicator)，就触发
 		Promise.all(asyncDataHooks.map(hook => hook({ store, router, route: to })))
-		.then(() => {
-			// 停止加载指示器(loading indicator)
-			NProgress.done()
-			next()
-		})
-		.catch(next)
+			.then(() => {
+				// 停止加载指示器(loading indicator)
+				NProgress.done()
+				next()
+			})
+			.catch(next)
 	})
 	// 挂载vue实例
 	app.$mount('#app')
