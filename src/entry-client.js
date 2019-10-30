@@ -37,8 +37,6 @@ router.onReady(() => {
 	router.beforeResolve((to, from, next) => {
 		const matched = router.getMatchedComponents(to)
 		const prevMatched = router.getMatchedComponents(from)
-		// start progress
-		NProgress.inc()
 
 		// 我们只关心非预渲染的组件
 		// 所以我们对比它们，找出两个匹配列表的差异组件
@@ -52,6 +50,8 @@ router.onReady(() => {
 		if (!asyncDataHooks.length) {
 			return next()
 		}
+		// start progress
+		NProgress.inc()
 		// 这里如果有加载指示器(loading indicator)，就触发
 		Promise.all(asyncDataHooks.map(hook => hook({ store, router, route: to })))
 			.then(() => {

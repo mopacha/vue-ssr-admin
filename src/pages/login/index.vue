@@ -102,18 +102,9 @@ export default {
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
-      passwordType: 'password',
-      redirect: undefined
+      passwordType: 'password'
     }
   },
-  watch: {
-    $route: {
-      handler: function (route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
-	},
 	computed: {
     showLeft: function () {
       return this.screenWidth > 600
@@ -134,8 +125,10 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+          this.$store.dispatch('user/login', this.loginForm).then(res => {
+						console.log(res)
+
+            this.$router.push({ path: '/' })
             this.loading = false
           }).catch(() => {
             this.loading = false
