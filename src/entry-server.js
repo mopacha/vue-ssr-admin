@@ -18,10 +18,9 @@ export default (context) => {
 				return reject({ code: 404 })
 			}
 			// SSR期间同步cookies
-			setCookies(context.cookies || {})
+			setCookies(context.cookie || {})
 			// http注入到rootState上，方便store里调用
-			//	store.state.$http = http
-
+		  // store.state.$http = http
 		  // 使用Promise.all执行匹配到的Component的asyncData方法，即预取数据
       Promise.all(matcheds.map(({ asyncData }) => asyncData && asyncData({
         store,

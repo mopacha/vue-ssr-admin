@@ -17,6 +17,7 @@ module.exports = {
 	},
 
 	appPort: process.env.PORT,//主服务启动端口
+
 	//代理配置，可支持多个代理，key为前缀，命中后，会把前缀去掉，转发到代理服务器
 	proxy: {
 		'/api': isProd ? conf.apiHost : devConf.apiHost

@@ -16,7 +16,7 @@ module.exports = {
   categories: {
     default: {
       appenders: ['console', 'app'],
-      level: 'info'
+      level: 'debug'  // ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'mark']
     }
   },
   pm2: true,
