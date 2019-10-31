@@ -48,6 +48,22 @@ pm2 start vue-ssr-admin
 pm2的用法和参数说明可以参考[pm2.md](./pm2.md)，也可参考[PM2实用入门指南](http://www.cnblogs.com/chyingp/p/pm2-documentation.html)
 
 
+### 集群模式PM2+Log4js log写入失败问题
+
+1. log4js的配置中增加这两个配置
+
+```js
+{
+    pm2: true,
+    pm2InstanceVar: "INSTANCE_ID" // 与pm2的配置对应
+}
+```
+2. 安装pm2-intercom;
+
+```bash
+pm2 install pm2-intercom
+```
+
 
 ### 待优化
 
