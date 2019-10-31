@@ -1,0 +1,8 @@
+[2019-10-31T18:29:17.628] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T18:29:17.629] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T18:29:17.630] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T18:29:17.791] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 159ms.
+[2019-10-31T18:31:50.742] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T18:31:50.744] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T18:31:50.745] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T18:31:50.929] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 181ms.

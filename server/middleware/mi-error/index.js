@@ -3,7 +3,7 @@
  * @param {ctx} ctx koa ctx
  * @param {Function} next koa next */
 
-module.exports = async function (ctx, next) {
+module.exports = async (ctx, next) => {
 	try {
 		// Node标识
 		ctx.set('X-Proxy', 'Node Server')

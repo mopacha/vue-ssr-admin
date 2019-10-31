@@ -5,8 +5,7 @@
 const urlUtils = require('url')
 const koaHttpProxy = require('koa-better-http-proxy')
 const compose = require('koa-compose')
-const appConfig = require('../../app.config')
-const logger = require('../logger/koa-logger')('mi-proxy')
+const appConfig = require('../../../app.config')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -14,10 +13,10 @@ const isProd = process.env.NODE_ENV === 'production'
  * 代理处理中间件
  * @return {Function} koa middleware
  */
-module.exports = function () {
+module.exports = () => {
 	async function preProxyMiddleware(ctx, next) {
 		const url = ctx.url
-		logger.info(`Request '${url}'`)
+		ctx.log.info(`Request '${url}'`)
 		let proxyTarget
 		let proxyConfig = appConfig.proxy
 		// 在appConfig.proxy中寻找匹配前缀的代理
@@ -27,15 +26,15 @@ module.exports = function () {
 				ctx.url = url.replace(prefix, '')
 				proxyTarget = target
 				ctx._proxyTarget = proxyTarget
-				logger.info(`Match to proxy: '${prefix}' => '${proxyTarget}'`)
+				ctx.log.info(`Match to proxy: '${prefix}' => '${proxyTarget}'`)
 				break
 			}
 		}
 		if (!proxyTarget) {
-			logger.info('Proxy not found')
+			ctx.log.info('Proxy not found')
 			return Promise.resolve()
 		}
-		logger.info(`Will be Agent to '${proxyTarget + ctx.url}'`)
+		ctx.log.info(`Will be Agent to '${proxyTarget + ctx.url}'`)
 		return next()
 	}
 
@@ -44,11 +43,7 @@ module.exports = function () {
    */
 	return compose([
 		preProxyMiddleware,
-		koaHttpProxy(
-			(ctx) => {
-				return ctx._proxyTarget
-			},
-			{
+		koaHttpProxy((ctx) => { return ctx._proxyTarget },{
 				// 不解析body，不限制body大小
 				parseReqBody: false,
         /**
@@ -63,7 +58,7 @@ module.exports = function () {
 					proxyReqOpts.port = parsedTarget.port
 					proxyReqOpts.https = parsedTarget.protocol === 'https:'
 
-				//	console.log('proxyReqOpts headers cookie is:' + JSON.stringify(proxyReqOpts.headers.cookie))
+					//	console.log('proxyReqOpts headers cookie is:' + JSON.stringify(proxyReqOpts.headers.cookie))
 					// 去掉Referer头，否则可能会造成CSRF问题，影响开发
 					if (!isProd) {
 						delete proxyReqOpts.headers.Referer
@@ -81,11 +76,11 @@ module.exports = function () {
          * @return {Promise.<*>} *
          */
 				async userResDecorator(proxyRes, proxyResData, ctx) {
-				  //logger.info('ProxyRes headers:', '\n', JSON.stringify(ctx.response.headers, null, 2))
+					//ctx.log.info('ProxyRes headers:', '\n', JSON.stringify(ctx.response.headers, null, 2))
 					const location = `${ctx._proxyTarget}${ctx.url}`
-					logger.info(`Proxy request '${location}' completed(${proxyRes.statusCode}), costing ${Date.now() - ctx._proxyStartTime}ms.`)
+					ctx.log.info(`Proxy request '${location}' completed(${proxyRes.statusCode}), costing ${Date.now() - ctx._proxyStartTime}ms.`)
 					return proxyResData
-				},
-			}),
+				}
+			})
 	])
 }
