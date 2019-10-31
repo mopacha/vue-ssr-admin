@@ -1,19 +1,13 @@
-/**
- * 项目的一些定制化配置
- */
+//app配置
 const path = require('path')
-const constants = require('./constants')
+const conf = require('./config/default')
+const devConf = require('./config/development')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-	//静态资源url
-	staticHost: constants.staticHost,
-	staticPath: constants.staticPath,
-	// 主服务启动端口
-	appPort: process.env.PORT || 3003,
-	// 代理配置，可支持多个代理，key为前缀，命中后，会把前缀去掉，转发到代理服务器
-	proxy: isProd ? constants.prodProxy : constants.proxy,
-	// webpack的差异化配置
+	staticHost: isProd ? conf.staticHost : devConf.staticHost,
+	staticPath: isProd ? conf.staticPath : devConf.staticPath,
+	//webpack的差异化配置
 	webpack: {
 		entry: {
 			app: path.join(__dirname, 'src/app.js'), // 入口
@@ -21,4 +15,10 @@ module.exports = {
 			resolveAlias: {} // 自定义Alias设置
 		},
 	},
+
+	appPort: process.env.PORT,//主服务启动端口
+	//代理配置，可支持多个代理，key为前缀，命中后，会把前缀去掉，转发到代理服务器
+	proxy: {
+		'/api': isProd ? conf.apiHost : devConf.apiHost
+	}
 }

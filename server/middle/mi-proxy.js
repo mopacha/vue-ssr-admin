@@ -6,7 +6,7 @@ const urlUtils = require('url')
 const koaHttpProxy = require('koa-better-http-proxy')
 const compose = require('koa-compose')
 const appConfig = require('../../app.config')
-const logger = require('../logger/koa-logger')('proxyMiddleWare')
+const logger = require('../logger/koa-logger')('mi-proxy')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -17,7 +17,7 @@ const isProd = process.env.NODE_ENV === 'production'
 module.exports = function () {
 	async function preProxyMiddleware(ctx, next) {
 		const url = ctx.url
-		// logger.info(`Request '${url}'`)
+		logger.info(`Request '${url}'`)
 		let proxyTarget
 		let proxyConfig = appConfig.proxy
 		// 在appConfig.proxy中寻找匹配前缀的代理

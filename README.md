@@ -21,10 +21,11 @@
 ## 命令
 * npm install : 安装npm依赖
 * npm run dev : 启动开发服务
-* npm start : 启动生产服务, 默认会执行打包命令
+* npm start : 启动开发服务
 * npm run build : 打包代码命令
 * npm run build:client : 打包client
 * npm run build:server : 打包server
+* npm prod : 启动生产服务, 先执行 npm run build
 
 ## 部署
 

@@ -9,8 +9,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const TimeFixPlugin = require('time-fix-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const appConfig = require('../app.config')
 
-const appConfig = require('./../app.config')
+const {
+	staticPath,
+	staticHost
+} = appConfig
+
+const resolveAlias = appConfig.webpack.resolveAlias
+
 const isProd = process.env.NODE_ENV === 'production'
 // 版本号
 const appVersion = new Date().getTime()
@@ -68,12 +75,12 @@ module.exports = function () {
 		// 输出模块配置
 		output: {
 			// 输出到这个目录下
-			path: resolve(`dist${appConfig.staticPath}/`),
+			path: resolve(`dist${staticPath}/`),
 			// 生成的文件名, [name] 即为entry配置中的key
 			filename: '[name].[chunkhash:8].js',
 			// 异步模块文件名
 			//chunkFilename: '[id].[chunkhash:8].js',
-			publicPath: `${appConfig.staticHost}${appConfig.staticPath}/`
+			publicPath: `${staticHost}${staticPath}/`
 		},
 
 		// 寻找模块时的一些缺省设置
@@ -81,7 +88,7 @@ module.exports = function () {
 			// 补充扩展名
 			extensions: ['.js', '.vue', '.json'],
 			// 别名，可以直接使用别名来代表设定的路径以及其他
-			alias: Object.assign({}, appConfig.webpack.resolveAlias, {
+			alias: Object.assign({}, resolveAlias, {
 				'vue': 'vue/dist/vue.esm.js',
 				'@': resolve('src'),
 			})
