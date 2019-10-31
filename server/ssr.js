@@ -11,6 +11,7 @@ const proxyConfig = appConfig.proxy
 
 module.exports = function (app, uri) {
 	const renderData = (ctx, renderer) => {
+		//ctx.log.warn(`把cookie 注入到 context 中:`, '\n', ctx.cookie)
 		const context = {
 			url: ctx.url,
 			title: 'VUE-SSR',

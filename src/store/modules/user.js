@@ -23,26 +23,41 @@ const actions = {
 	// user login
 	login({ commit }, userInfo) {
 		const { username, password } = userInfo
-		login({ username: username.trim(), password: password }).then(res => {
-			const { data } = res
-			commit('SET_TOKEN', data.token)
-			setToken(data.token)
+		return new Promise((resolve, reject) => {
+			login({ username: username.trim(), password: password }).then(res => {
+				const { data } = res
+				commit('SET_TOKEN', data.token)
+				setToken(data.token)
+				resolve()
+			}).catch(error => {
+				reject(error)
+			})
 		})
 	},
 
 	// get user info
 	getInfo({ commit, state }) {
-		return getInfo(state.token).then(res => {
-			const { data } = res
-			commit('SET_USERINFO', data)
+		return new Promise((resolve, reject) => {
+			return getInfo(state.token).then(res => {
+				const { data } = res
+				commit('SET_USERINFO', data)
+				resolve(data)
+			}).catch(error => {
+				reject(error)
+			})
 		})
 	},
 
 	// user logout
 	logout({ commit, state }) {
-		logout(state.token).then(() => {
-			commit('SET_TOKEN', '')
-			removeToken()
+		return new Promise((resolve, reject) => {
+			logout(state.token).then(() => {
+				commit('SET_TOKEN', '')
+				removeToken()
+				resolve()
+			}).catch(error => {
+				reject(error)
+			})
 		})
 	},
 
