@@ -58,7 +58,7 @@ module.exports = () => {
 					proxyReqOpts.port = parsedTarget.port
 					proxyReqOpts.https = parsedTarget.protocol === 'https:'
 
-					ctx.log.debug('proxyReqOpts headers cookie is:' + JSON.stringify(proxyReqOpts.headers.cookie))
+					//ctx.log.info(proxyReqOpts)
 					// 去掉Referer头，否则可能会造成CSRF问题，影响开发
 					if (!isProd) {
 						delete proxyReqOpts.headers.Referer

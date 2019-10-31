@@ -14,7 +14,7 @@ module.exports = function (app, uri) {
 		const context = {
 			url: ctx.url,
 			title: 'VUE-SSR',
-			cookie: ctx.headers.cookie //把cookie 注入到 context 中
+			cookie: ctx.cookie //把cookie 注入到 context 中
 		}
 		return new Promise((resolve, reject) => {
 			renderer.renderToString(context, (err, html) => {

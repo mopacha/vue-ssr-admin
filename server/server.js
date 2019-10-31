@@ -1,7 +1,7 @@
 //koa2服务详细配置
 const Koa = require('koa')
-const koaCompress = require('koa-compress')()
-const koaLog = require('koa-logger')()
+const koaCompress = require('koa-compress')
+const koaLog = require('koa-logger')
 const path = require('path')
 const static = require('koa-static')
 const SSR = require('./ssr')
@@ -11,6 +11,7 @@ const appConfig = require('../app.config')
 const middleware = require('./middleware/index')
 
 const {
+	miCookie,
 	miLog,
 	miProxy,
 	miError
@@ -22,12 +23,13 @@ const uri = `http://${currentIP}:${appConfig.appPort}`
 // koa server
 const app = new Koa()
 
+app.use(miCookie())
 // 中间件
 app.use(miLog())
 
-//app.use(koaLog) // 打印请求与响应 日志
+//app.use(koaLog()) // 打印请求与响应 日志
 
-app.use(koaCompress) // 压缩响应
+app.use(koaCompress()) // 压缩响应
 
 app.use(miError) // 错误处理
 

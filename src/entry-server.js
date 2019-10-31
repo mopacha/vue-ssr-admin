@@ -9,8 +9,14 @@ export default (context) => {
 		const { app, router, store } = createApp()
 		const { url } = context
 
-		// 设置服务器端 router 的位置
 		router.push(url)
+		// 设置服务器端 router 的位置
+		//if (context.cookie['vue_ssr_token']) {
+		//	store.state.token = context.cookie['vue_ssr_token']
+		//	router.push(url)
+		//} else {
+		//	router.push('/login')
+		//}
 
 		router.onReady(() => {
 			const matcheds = router.getMatchedComponents()
@@ -20,13 +26,13 @@ export default (context) => {
 			// SSR期间同步cookies
 			setCookies(context.cookie || {})
 			// http注入到rootState上，方便store里调用
-		  // store.state.$http = http
-		  // 使用Promise.all执行匹配到的Component的asyncData方法，即预取数据
-      Promise.all(matcheds.map(({ asyncData }) => asyncData && asyncData({
-        store,
-        router,
-        route: router.currentRoute,
-      }))).then(() => {
+			// store.state.$http = http
+			// 使用Promise.all执行匹配到的Component的asyncData方法，即预取数据
+			Promise.all(matcheds.map(({ asyncData }) => asyncData && asyncData({
+				store,
+				router,
+				route: router.currentRoute,
+			}))).then(() => {
 				// 在所有预取钩子(preFetch hook) resolve 后，
 				// 我们的 store 现在已经填充入渲染应用程序所需的状态。
 				// 当我们将状态附加到上下文，

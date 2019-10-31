@@ -155,3 +155,265 @@
 [2019-10-31T19:01:07.495] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"connect.sid=s%3AkTG64ZZ8F56KG8qHSfyn93NFfWk8z67Q.LJV%2FF3xVl9ld3v9rlrDNknAC%2BzS1Ute7nrzPBkkcABY"
 [2019-10-31T19:01:07.718] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 220ms.
 [2019-10-31T19:01:07.730] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:03:55.840] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:03:55.841] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:03:55.842] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:03:55.843] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"connect.sid=s%3AkTG64ZZ8F56KG8qHSfyn93NFfWk8z67Q.LJV%2FF3xVl9ld3v9rlrDNknAC%2BzS1Ute7nrzPBkkcABY; vue_ssr_token=FJLASJFAS352325325LLLLSFSAFXXAAAAAA"
+[2019-10-31T19:03:56.014] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 170ms.
+[2019-10-31T19:03:56.020] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:04:08.595] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:04:08.596] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:04:08.596] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:04:08.597] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"[object Object]"
+[2019-10-31T19:04:08.722] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 125ms.
+[2019-10-31T19:04:08.731] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:04:19.870] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:04:19.870] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:04:19.871] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:04:19.872] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"[object Object]"
+[2019-10-31T19:04:20.006] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 133ms.
+[2019-10-31T19:04:20.007] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:05:56.664] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:05:56.665] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:05:56.665] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:05:56.667] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"[object Object]"
+[2019-10-31T19:05:56.802] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 134ms.
+[2019-10-31T19:05:56.811] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:06:35.558] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout'
+[2019-10-31T19:06:35.565] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:06:35.569] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout'
+[2019-10-31T19:06:35.572] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:undefined
+[2019-10-31T19:06:35.797] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout' completed(200), costing 217ms.
+[2019-10-31T19:06:35.806] [INFO] vue-ssr - Response is : {"code":0}
+[2019-10-31T19:07:45.944] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:07:45.944] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:07:45.945] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:07:45.947] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"[object Object]"
+[2019-10-31T19:07:46.065] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 118ms.
+[2019-10-31T19:07:46.076] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:07:55.775] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout'
+[2019-10-31T19:07:55.784] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:07:55.792] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout'
+[2019-10-31T19:07:55.806] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:undefined
+[2019-10-31T19:07:55.972] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout' completed(200), costing 160ms.
+[2019-10-31T19:07:55.977] [INFO] vue-ssr - Response is : {"code":0}
+[2019-10-31T19:08:42.691] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login'
+[2019-10-31T19:08:42.697] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:08:42.709] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login'
+[2019-10-31T19:08:42.715] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"connect.sid=s%3AYMW1FdoGqTlNql6GEV5AVRXVK8cx9gHX.HGGPCFBzWhVXWpixHvg2imNk7iGmCb6IRlinBi74RXg"
+[2019-10-31T19:08:42.935] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:08:42.973] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:08:42.978] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:08:42.981] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"connect.sid=s%3AYMW1FdoGqTlNql6GEV5AVRXVK8cx9gHX.HGGPCFBzWhVXWpixHvg2imNk7iGmCb6IRlinBi74RXg"
+[2019-10-31T19:08:43.015] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login' completed(200), costing 283ms.
+[2019-10-31T19:08:43.023] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","age":"23","token":"FJLASJFAS352325325LLLLSFSAFXXAAAAAA"}}
+[2019-10-31T19:08:43.148] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 167ms.
+[2019-10-31T19:08:43.153] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:14:38.413] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:14:38.415] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T19:14:38.416] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T19:14:38.416] [DEBUG] vue-ssr - proxyReqOpts headers cookie is:"connect.sid=s%3AYMW1FdoGqTlNql6GEV5AVRXVK8cx9gHX.HGGPCFBzWhVXWpixHvg2imNk7iGmCb6IRlinBi74RXg; vue_ssr_token=FJLASJFAS352325325LLLLSFSAFXXAAAAAA"
+[2019-10-31T19:14:38.665] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 248ms.
+[2019-10-31T19:14:38.674] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T19:15:22.359] [WARN] vue-ssr - undefined is cookie : connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s
+[2019-10-31T19:15:22.519] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 158ms.
+[2019-10-31T19:15:31.866] [WARN] vue-ssr - undefined is cookie : connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s
+[2019-10-31T19:15:31.997] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 131ms.
+[2019-10-31T19:17:52.864] [WARN] vue-ssr - { headers: 
+   { accept: 'application/json, text/plain, */*; charset=utf-8',
+     'content-type': 'application/json; charset=utf-8',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     cookie: 'connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s',
+     'user-agent': 'axios/0.19.0',
+     connection: 'close' },
+  method: 'GET',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:17:53.027] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 161ms.
+[2019-10-31T19:18:07.683] [WARN] vue-ssr - { headers: 
+   { accept: 'application/json, text/plain, */*; charset=utf-8',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     origin: 'http://172.20.10.72:3006',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     referer: 'http://172.20.10.72:3006/home',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     cookie: 'connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s',
+     connection: 'close' },
+  method: 'POST',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:18:07.824] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout' completed(200), costing 140ms.
+[2019-10-31T19:18:18.287] [WARN] vue-ssr - { headers: 
+   { pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     accept: 'application/json, text/plain, */*; charset=utf-8',
+     origin: 'http://172.20.10.72:3006',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     'content-type': 'application/json;charset=UTF-8',
+     referer: 'http://172.20.10.72:3006/login?redirect=%2Fhome',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     cookie: 'connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s',
+     connection: 'close' },
+  method: 'POST',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:18:18.442] [WARN] vue-ssr - { headers: 
+   { pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     accept: 'application/json, text/plain, */*; charset=utf-8',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     referer: 'http://172.20.10.72:3006/login?redirect=%2Fhome',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     cookie: 'connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s',
+     connection: 'close' },
+  method: 'GET',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:18:18.584] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 138ms.
+[2019-10-31T19:18:18.595] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login' completed(200), costing 302ms.
+[2019-10-31T19:20:36.243] [WARN] vue-ssr - { headers: 
+   { pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     accept: 'application/json, text/plain, */*; charset=utf-8',
+     origin: 'http://172.20.10.72:3006',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     referer: 'http://172.20.10.72:3006/login?redirect=%2Fhome',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     cookie: 'connect.sid=s%3AmMlHGlQKayAP8c-vxoM26fgjXQGmDjAs.UmXImj5iaOHY3OOw2iJt%2BRORUm0dri%2BD%2BcZL1tL%2Bv1s; vue_ssr_token=FJLASJFAS352325325LLLLSFSAFXXAAAAAA',
+     connection: 'close' },
+  method: 'POST',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:20:36.399] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout' completed(200), costing 135ms.
+[2019-10-31T19:21:02.509] [WARN] vue-ssr - { headers: 
+   { pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     accept: 'application/json, text/plain, */*; charset=utf-8',
+     origin: 'http://172.20.10.72:3006',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     'content-type': 'application/json;charset=UTF-8',
+     referer: 'http://172.20.10.72:3006/login?redirect=%2Fhome',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     connection: 'close' },
+  method: 'POST',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:21:02.620] [WARN] vue-ssr - { headers: 
+   { pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     accept: 'application/json, text/plain, */*; charset=utf-8',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     referer: 'http://172.20.10.72:3006/login?redirect=%2Fhome',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     connection: 'close' },
+  method: 'GET',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:21:02.735] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login' completed(200), costing 224ms.
+[2019-10-31T19:21:02.755] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 134ms.
+[2019-10-31T19:22:23.028] [WARN] vue-ssr - { headers: 
+   { accept: 'application/json, text/plain, */*; charset=utf-8',
+     'content-type': 'application/json; charset=utf-8',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     cookie: 'vue_ssr_token=FJLASJFAS352325325LLLLSFSAFXXAAAAAA; connect.sid=s%3Al_99MSNQTGcz4l3K0LnZBqdZ1ea1cgbp.WqFkdpli1R6bhyfioMtWof2RUOv6ot6HmOPl89pJBz0',
+     'user-agent': 'axios/0.19.0',
+     connection: 'close' },
+  method: 'GET',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:22:23.160] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 132ms.
+[2019-10-31T19:56:36.418] [WARN] vue-ssr - { headers: 
+   { accept: 'application/json, text/plain, */*; charset=utf-8',
+     'content-type': 'application/json; charset=utf-8',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     cookie: '[object Object]',
+     'user-agent': 'axios/0.19.0',
+     connection: 'close' },
+  method: 'GET',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:56:36.578] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 157ms.
+[2019-10-31T19:59:39.972] [WARN] vue-ssr - { headers: 
+   { accept: 'application/json, text/plain, */*; charset=utf-8',
+     'content-type': 'application/json; charset=utf-8',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     cookie: '[object Object]',
+     'user-agent': 'axios/0.19.0',
+     connection: 'close' },
+  method: 'GET',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:59:40.140] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 164ms.
+[2019-10-31T19:59:52.653] [WARN] vue-ssr - { headers: 
+   { accept: 'application/json, text/plain, */*; charset=utf-8',
+     pragma: 'no-cache',
+     'cache-control': 'no-cache',
+     origin: 'http://172.20.10.72:3006',
+     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+     referer: 'http://172.20.10.72:3006/home',
+     'accept-encoding': 'gzip, deflate',
+     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
+     cookie: 'vue_ssr_token=FJLASJFAS352325325LLLLSFSAFXXAAAAAA; connect.sid=s%3Al_99MSNQTGcz4l3K0LnZBqdZ1ea1cgbp.WqFkdpli1R6bhyfioMtWof2RUOv6ot6HmOPl89pJBz0',
+     connection: 'close' },
+  method: 'POST',
+  path: '/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout',
+  host: 'www.fastmock.site',
+  port: null,
+  https: true }
+[2019-10-31T19:59:52.852] [WARN] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout' completed(200), costing 196ms.
+[2019-10-31T20:27:22.945] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T20:27:22.946] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T20:27:22.947] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T20:27:23.133] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 185ms.
+[2019-10-31T20:27:23.133] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T20:27:38.682] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T20:27:38.687] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T20:27:38.690] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T20:27:38.826] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 131ms.
+[2019-10-31T20:27:38.827] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T20:27:43.040] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout'
+[2019-10-31T20:27:43.044] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T20:27:43.070] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout'
+[2019-10-31T20:27:43.261] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/logout' completed(200), costing 187ms.
+[2019-10-31T20:27:43.280] [INFO] vue-ssr - Response is : {"code":0}
+[2019-10-31T20:27:44.673] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login'
+[2019-10-31T20:27:44.679] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T20:27:44.689] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login'
+[2019-10-31T20:27:44.703] [INFO] vue-ssr - Request '/api/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T20:27:44.704] [INFO] vue-ssr - Match to proxy: '/api' => 'https://www.fastmock.site'
+[2019-10-31T20:27:44.706] [INFO] vue-ssr - Will be Agent to 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo'
+[2019-10-31T20:27:44.833] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/userInfo' completed(200), costing 126ms.
+[2019-10-31T20:27:44.844] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","auth":"admin","age":25}}
+[2019-10-31T20:27:44.886] [INFO] vue-ssr - Proxy request 'https://www.fastmock.site/mock/55ba966902a625c38ff5f6b565e4f0aa/ssr/login' completed(200), costing 196ms.
+[2019-10-31T20:27:44.892] [INFO] vue-ssr - Response is : {"code":0,"data":{"username":"zifeiyu","age":"23","token":"FJLASJFAS352325325LLLLSFSAFXXAAAAAA"}}
