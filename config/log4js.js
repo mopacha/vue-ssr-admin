@@ -5,7 +5,7 @@ module.exports = {
     },
     app: {
       type: 'dateFile',
-      filename: `logs/vue-ssr-admin`,
+      filename: `log/vue-ssr-admin`,
       pattern: '-yyyy-MM-dd.log',
       alwaysIncludePattern: true,
       backups: 5,
@@ -16,7 +16,7 @@ module.exports = {
   categories: {
     default: {
       appenders: ['console', 'app'],
-      level: 'info'  // ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'mark']
+      level: 'debug'  // ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'mark']
     }
   },
   pm2: true,

@@ -11,7 +11,7 @@ const proxyConfig = appConfig.proxy
 
 module.exports = function (app, uri) {
 	const renderData = (ctx, renderer) => {
-		//ctx.log.warn(`把cookie 注入到 context 中:`, '\n', ctx.cookie)
+		ctx.log.debug(`把cookie 注入到 context 中:`, ctx.cookie)
 		const context = {
 			url: ctx.url,
 			title: 'VUE-SSR',
@@ -19,6 +19,7 @@ module.exports = function (app, uri) {
 		}
 		return new Promise((resolve, reject) => {
 			renderer.renderToString(context, (err, html) => {
+				//ctx.log.debug('renderToString callback')
 				if (err) {
 					return reject(err)
 				}
@@ -75,6 +76,7 @@ module.exports = function (app, uri) {
 		try {
 			status = 200
 			html = await renderData(ctx, renderer)
+			//ctx.log.debug('html')
 		} catch (e) {
 			console.log('\ne', e)
 			if (e.code === 404) {

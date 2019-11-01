@@ -1,7 +1,7 @@
 //运行于浏览器
 import Vue from 'vue'
 import { createApp } from './app'
-
+import createStore from './store'
 import http from '@/util/http'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
@@ -22,19 +22,22 @@ Vue.mixin({
 	}
 })
 
-const { app, router, store } = createApp()
-
-// prime the store with server-initialized state.
-// the state is determined during SSR and inlined in the page markup.
+const store = createStore()
+const { app, router } = createApp(store)
+/// 将服务端渲染时候的状态写入vuex中
 if (window.__INITIAL_STATE__) {
 	store.replaceState(window.__INITIAL_STATE__)
 	// 客户端和服务端保持一致
-	//  store.state.$http = http
+	// store.state.$http = http
 }
 
 
 router.onReady(() => {
+
+	//console.log('entry-client onReady done')
+
 	router.beforeResolve((to, from, next) => {
+		console.log('entry-client beforeResolve ')
 		const matched = router.getMatchedComponents(to)
 		const prevMatched = router.getMatchedComponents(from)
 

@@ -4,7 +4,6 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 import createRouter from './router/index'
 import App from './App.vue'
-import createStore from './store/index'
 import { sync } from 'vuex-router-sync'
 import * as filters from '@/util/filters'
 import titleMixin from './util/title-mixin'
@@ -52,10 +51,8 @@ addResponseInterceptor(
 	}
 )
 
-export function createApp() {
-	const router = createRouter()
-	const store = createStore()
-
+export function createApp(store) {
+	const router = createRouter(store) // <--- pass `store` to `createRouter` function
 	sync(store, router)
 	const app = new Vue({
 		router,

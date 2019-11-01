@@ -1,25 +1,30 @@
 //运行于服务器
 import { createApp } from './app'
+import createStore from './store'
 import http from '@/util/http'
 // 处理ssr期间cookies穿透
 import { setCookies } from '@/util/http'
 
 export default (context) => {
 	return new Promise((resolve, reject) => {
-		const { app, router, store } = createApp()
+		const store = createStore()
+		const { app, router } = createApp(store)
 		const { url } = context
 
-		router.push(url)
-		// 设置服务器端 router 的位置
-		//if (context.cookie['vue_ssr_token']) {
-		//	store.state.token = context.cookie['vue_ssr_token']
-		//	router.push(url)
-		//} else {
-		//	router.push('/login')
-		//}
+		// beforEach 前更新store的token
+		if (context.cookie && context.cookie['vue_ssr_token']) {
+			store.state.user.token = context.cookie['vue_ssr_token']
+		} else {
+			store.state.user.token = ''
+		}
 
+		router.push(url)
+
+		//等到 router 将可能的异步组件和钩子函数解析完
 		router.onReady(() => {
 			const matcheds = router.getMatchedComponents()
+
+			// 匹配不到的路由，执行 reject 函数，并返回 40
 			if (!matcheds.length) {
 				return reject({ code: 404 })
 			}
