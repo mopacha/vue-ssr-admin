@@ -26,18 +26,18 @@ const store = createStore()
 const { app, router } = createApp(store)
 /// 将服务端渲染时候的状态写入vuex中
 if (window.__INITIAL_STATE__) {
+	console.log('entry-client===>:window.__INITIAL_STATE__')
 	store.replaceState(window.__INITIAL_STATE__)
 	// 客户端和服务端保持一致
 	// store.state.$http = http
 }
 
 
+console.log('entry-client===>: onReady')
 router.onReady(() => {
-
-	//console.log('entry-client onReady done')
-
+	console.log('entry-client===>: onReady done')
 	router.beforeResolve((to, from, next) => {
-		console.log('entry-client beforeResolve ')
+		console.log('entry-client===>: beforeResolve ')
 		const matched = router.getMatchedComponents(to)
 		const prevMatched = router.getMatchedComponents(from)
 

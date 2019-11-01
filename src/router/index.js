@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/layout'
+import { getToken } from '@/util/auth' // get token from cookie
 
 
 //fix bug  Uncaught (in promise) NavigationDuplicated {_name: "NavigationDuplicated", name: "NavigationDuplicated"}
@@ -66,8 +67,8 @@ export default (store) => {
 	router.beforeEach((to, from, next) => {
 		// In the client side get the state from window.__INITIAL_STATE__.
 		// Because it's not available in client side store at this moment.
-		const { user } = process.browser ? window.__INITIAL_STATE__ : store.state;
-		const _token = user.token
+		//const { user } = process.browser ? window.__INITIAL_STATE__ : store.state;
+		const _token = process.browser ? getToken(): store.state.user.token
 
 		console.log('beforeEach cookie====>:'+_token)
 
