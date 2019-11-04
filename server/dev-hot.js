@@ -43,6 +43,7 @@ module.exports = function setupDevServer(app, uri, cb) {
 			colors: true,
 		},
 		watchOptions: {
+			ignored: /node_modules/,
 			aggregateTimeout: 300,
 			poll: true
 		},
