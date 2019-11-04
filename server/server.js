@@ -23,15 +23,14 @@ const uri = `http://${currentIP}:${appConfig.appPort}`
 // koa server
 const app = new Koa()
 
+app.use(miError) // 错误处理
+
 app.use(miCookie())
 // 中间件
 app.use(miLog())
-
 //app.use(koaLog()) // 打印请求与响应 日志
-
 app.use(koaCompress()) // 压缩响应
 
-app.use(miError) // 错误处理
 
 
 //设置静态资源请求目录和设置缓存
@@ -48,7 +47,7 @@ console.log(`\n> Starting server... ${uri} \n`)
 
 // 错误处理
 app.on('error', (err) => {
-	// console.error('Server error: \n%s\n%s ', err.stack || '')
+	 console.error('Server error: \n%s\n%s ', err.stack || '')
 })
 
 app.listen(appConfig.appPort, '0.0.0.0')

@@ -1,17 +1,18 @@
 /*这是一个工厂函数导出app的实例*/
 import '@babel/polyfill'
 import Vue from 'vue'
-import ElementUI from 'element-ui'
 import createRouter from './router/index'
 import App from './App.vue'
 import { sync } from 'vuex-router-sync'
 import * as filters from '@/util/filters'
 import titleMixin from './util/title-mixin'
-import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss' // global css
 import '@/icons' // icon
 import http from '@/util/http'
 import { addRequestInterceptor, addResponseInterceptor } from '@/util/http'
+
+global.Vue = Vue
+require('./element-ui')
 
 Object.keys(filters).forEach((key) => {
 	Vue.filter(key, filters[key])
@@ -19,7 +20,6 @@ Object.keys(filters).forEach((key) => {
 
 Vue.mixin(titleMixin)
 // 注册插件
-Vue.use(ElementUI, { size: 'small' })
 Vue.use(http)
 Vue.prototype.$http = http
 
@@ -27,7 +27,7 @@ Vue.prototype.$http = http
 addRequestInterceptor(
 	(config) => {
 		/*统一加/api前缀*/
-		config.url = `/api${config.url}`
+		//	config.url = `/api${config.url}`
 		return config
 	},
 	(error) => {
@@ -47,7 +47,7 @@ addResponseInterceptor(
     * 这里reject下，交给entry-server.js的处理
     */
 		const { response, request } = error
-		return Promise.reject({ code: response.status, data: response.data, method: request.method, path: request.path })
+		return Promise.reject({ status: response.status, data: response.data, method: request.method, path: request.path })
 	}
 )
 

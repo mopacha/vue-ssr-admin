@@ -11,17 +11,15 @@ const proxyConfig = appConfig.proxy
 
 module.exports = function (app, uri) {
 	const renderData = (ctx, renderer) => {
-		ctx.log.debug(`把cookie 注入到 context 中:`, ctx.cookie)
+		//ctx.log.debug(`把cookie 注入到 context 中:`, ctx.cookie)
 		const context = {
 			url: ctx.url,
 			title: 'VUE-SSR',
 			cookie: ctx.cookie //把cookie 注入到 context 中
 		}
 		return new Promise((resolve, reject) => {
-			ctx.log.debug('start renderToString')
 			//renderer.renderToString 开始执行行entry-erver.js
 			renderer.renderToString(context, (err, html) => {
-				ctx.log.debug('renderToString finish')
 				if (err) {
 					return reject(err)
 				}
@@ -56,12 +54,9 @@ module.exports = function (app, uri) {
 		})
 	} else {
 		// dev mode
-		console.log("NODE_ENV:  development")
 		devHot(app, uri, (bundle, options) => {
 			try {
-				console.log('start createRenderer')
 				renderer = createRenderer(bundle, options)
-				console.log('renderer finished')
 			} catch (e) {
 				console.log('\nbundle error', e)
 			}
@@ -79,14 +74,15 @@ module.exports = function (app, uri) {
 		let html, status
 		try {
 			status = 200
-			ctx.log.debug('start renderData')
 			html = await renderData(ctx, renderer)
-			ctx.log.debug('html')
 		} catch (e) {
-			console.log('\ne', e)
-			if (e.code === 404) {
+			//ctx.log.debug(`renderData err:`, e)
+			if (e.status === 404) {
 				status = 404
 				html = '404 | Not Found'
+			} else if (e.status === 401) {
+				status = 401
+				return ctx.redirect('/login')
 			} else {
 				status = 500
 				html = '500 | Internal Server Error'

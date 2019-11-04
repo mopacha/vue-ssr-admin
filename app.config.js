@@ -20,6 +20,7 @@ module.exports = {
 
 	//代理配置，可支持多个代理，key为前缀，命中后，会把前缀去掉，转发到代理服务器
 	proxy: {
-		'/api': isProd ? conf.apiHost : devConf.apiHost
+		'/fastApp': isProd ? conf.apiHost : devConf.apiHost,
+		'/waterApp': isProd ? conf.apiHost2 : devConf.apiHost2
 	}
 }

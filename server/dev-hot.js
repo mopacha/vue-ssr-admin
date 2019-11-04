@@ -86,6 +86,6 @@ module.exports = function setupDevServer(app, uri, cb) {
 
 	devMiddleware.waitUntilValid(() => {
 		console.log('\n> Listening at ' + uri + '\n')
-		open(uri)
+		//open(uri)
 	})
 }

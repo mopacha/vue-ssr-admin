@@ -1,17 +1,15 @@
 //运行于服务器
 import { createApp } from './app'
 import createStore from './store'
-import http from '@/util/http'
+
 // 处理ssr期间cookies穿透
 import { setCookies } from '@/util/http'
 
 export default (context) => {
 	return new Promise((resolve, reject) => {
-		console.log('entry-server==>')
 		const store = createStore()
 		const { app, router } = createApp(store)
 		const { url } = context
-
 		// beforEach 前更新store的token
 		if (context.cookie && context.cookie['vue_ssr_token']) {
 			store.state.user.token = context.cookie['vue_ssr_token']
@@ -19,21 +17,17 @@ export default (context) => {
 			store.state.user.token = ''
 		}
 
-		console.log(`entry-server==>start router.push:${url}`)
 		router.push(url)
 
 		//等到 router 将可能的异步组件和钩子函数解析完
 		router.onReady(() => {
 			const matcheds = router.getMatchedComponents()
-
 			// 匹配不到的路由，执行 reject 函数，并返回 40
 			if (!matcheds.length) {
 				return reject({ code: 404 })
 			}
 			// SSR期间同步cookies
 			setCookies(context.cookie || {})
-			// http注入到rootState上，方便store里调用
-			// store.state.$http = http
 			// 使用Promise.all执行匹配到的Component的asyncData方法，即预取数据
 			Promise.all(matcheds.map(Component => {
 				if (Component.asyncData) {
@@ -50,9 +44,18 @@ export default (context) => {
 					// 当我们将状态附加到上下文，
 					// 并且 `template` 选项用于 renderer 时，
 					// 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
-					context.state = store.state
+					context.state = Object.assign(store.state, { serverError: false })
 					resolve(app)
-				}).catch(reject)
+				}).catch(err => {
+					// 交个服务端重定向
+					if (err.status === 401) {
+						reject(err)
+					}
+					//增加服务端预渲染错误标识，前端拿到标志后重新渲染
+					context.state = Object.assign(store.state, { serverError: true })
+					//最后，将服务端vue实例正常返回，避免抛500
+					resolve(app)
+				})
 		}, reject)
 	})
 }

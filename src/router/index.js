@@ -38,6 +38,18 @@ export const constantRoutes = [
 	},
 
 	{
+		path: '/bot',
+		component: Layout,
+		redirect: '/bot',
+		children: [{
+			path: '',
+			name: 'Bot',
+			component: () => import('@/pages/bot/index'),
+			meta: { title: '机器人管理', icon: 'bot' }
+		}]
+	},
+
+	{
 		path: '/orgchart',
 		component: Layout,
 		children: [
@@ -68,9 +80,7 @@ export default (store) => {
 		// In the client side get the state from window.__INITIAL_STATE__.
 		// Because it's not available in client side store at this moment.
 		//const { user } = process.browser ? window.__INITIAL_STATE__ : store.state;
-		const _token = process.browser ? getToken(): store.state.user.token
-
-		console.log('beforeEach cookie====>:'+_token)
+		const _token = process.browser ? getToken() : store.state.user.token
 
 		function handleAuth(token) {
 			if (token) {

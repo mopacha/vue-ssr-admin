@@ -54,6 +54,7 @@ module.exports = () => {
 			 */
 			async proxyReqOptDecorator(proxyReqOpts, ctx) {
 				const parsedTarget = urlUtils.parse(ctx._proxyTarget, true)
+			//	ctx.log.debug("parsedTarget", parsedTarget)
 				proxyReqOpts.host = parsedTarget.hostname
 				proxyReqOpts.port = parsedTarget.port
 				proxyReqOpts.https = parsedTarget.protocol === 'https:'
@@ -66,6 +67,8 @@ module.exports = () => {
 				}
 				// 计时开始
 				ctx._proxyStartTime = Date.now()
+
+				//console.log(proxyReqOpts)
 				return proxyReqOpts
 			},
 			/**
@@ -78,9 +81,10 @@ module.exports = () => {
 			async userResDecorator(proxyRes, proxyResData, ctx) {
 				//ctx.log.info('ProxyRes headers:', '\n', JSON.stringify(ctx.response.headers, null, 2))
 				const location = `${ctx._proxyTarget}${ctx.url}`
-				//ctx.log.debug(`Proxy request '${location}' completed(${proxyRes.statusCode}), costing ${Date.now() - ctx._proxyStartTime}ms.`)
+				ctx.log.debug(`Proxy request '${location}' completed(${proxyRes.statusCode}), costing ${Date.now() - ctx._proxyStartTime}ms.`)
 
 				ctx.log.info(`Response is : ${proxyResData}`)
+
 				return proxyResData
 			}
 		})
