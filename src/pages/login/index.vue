@@ -65,6 +65,7 @@
 </template>
 <script>
 
+
 export default {
   name: 'Login',
   mounted() {
@@ -92,7 +93,7 @@ export default {
       }
     }
     return {
-			screenWidth: 700,
+      screenWidth: 700,
       loginForm: {
         username: '',
         password: ''
@@ -105,7 +106,7 @@ export default {
       passwordType: 'password'
     }
   },
-	computed: {
+  computed: {
     showLeft: function () {
       return this.screenWidth > 600
     }
@@ -121,11 +122,20 @@ export default {
         this.$refs.password.focus()
       })
     },
+
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          const { encrypt } = require('@/util/encrypt')
+					const encryptPassword = encrypt(this.loginForm.password)
+
+          const loginForm = {
+            username: this.loginForm.username,
+            password: encryptPassword
+          }
+
+          this.$store.dispatch('user/login', loginForm).then(() => {
             this.$router.push({ path: '/' })
             this.loading = false
           }).catch(() => {
