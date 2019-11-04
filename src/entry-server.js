@@ -1,6 +1,7 @@
 //运行于服务器
 import { createApp } from './app'
 import createStore from './store'
+import {cookie2Str} from  '@/util/cookie-tools'
 
 // 处理ssr期间cookies穿透
 import { setCookies } from '@/util/http'
@@ -27,7 +28,7 @@ export default (context) => {
 				return reject({ code: 404 })
 			}
 			// SSR期间同步cookies
-			setCookies(context.cookie || {})
+			setCookies(cookie2Str(context.cookie))
 			// 使用Promise.all执行匹配到的Component的asyncData方法，即预取数据
 			Promise.all(matcheds.map(Component => {
 				if (Component.asyncData) {
