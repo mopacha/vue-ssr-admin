@@ -164,6 +164,7 @@ export default {
       OrgChart.templates.ana.field_0 = '<text class="field_0"  style="font-size: 16px;" fill="#ffffff" x="125" y="30" text-anchor="middle">拨打编号：{val}</text>';
       OrgChart.templates.ana.field_1 = '<text class="field_1"  style="font-size: 16px;" fill="#ffffff" x="125" y="60" text-anchor="middle">拨打范围：{val}</text>';
       OrgChart.templates.ana.field_2 = '<text class="field_2"  style="font-size: 16px;" fill="#ffffff" x="125" y="90" text-anchor="middle">机器人：{val}</text>';
+
       var chart = new OrgChart(document.getElementById("tree"), {
         template: 'ana',
         mouseScrool: OrgChart.action.zoom,
