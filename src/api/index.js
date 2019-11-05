@@ -13,11 +13,9 @@ export function logout() {
 }
 
 export function getList(params) {
-	return http.post('/waterApp/dhv1/model/list', {
-		params: {
-			page_index: params.page_index,
-			page_size: params.page_size
-		}
+	return http.post('/waterApp/dhv1/users/list', {
+		page_index: params.page_index,
+		page_size: params.page_size
 	})
 }
 

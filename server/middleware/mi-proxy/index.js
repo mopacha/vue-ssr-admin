@@ -45,7 +45,8 @@ module.exports = () => {
 		preProxyMiddleware,
 		koaHttpProxy((ctx) => { return ctx._proxyTarget }, {
 			// 不解析body，不限制body大小
-			parseReqBody: false,
+			parseReqBody: true,
+
 			/**
 			 * 发出代理请求前的回调,更改头文件
 			 * @param {Object} proxyReqOpts - 代理请求选项
@@ -64,19 +65,23 @@ module.exports = () => {
 					delete proxyReqOpts.headers.Origin
 				}
 
-				const reqParams = JSON.stringify({
-					url: ctx._proxyTarget + proxyReqOpts.path,
-					method: proxyReqOpts.method,
-					cookie: proxyReqOpts.headers.cookie
-				})
-
-				ctx.log.info('Request:', reqParams)
-
-				// 计时开始
-				ctx._proxyStartTime = Date.now()
-
+				ctx._proxyReqOpts = proxyReqOpts
 				return proxyReqOpts
 			},
+
+			//发出代理请求前的回调,请求body
+			async	proxyReqBodyDecorator(bodyContent, ctx) {
+				const reqParams = JSON.stringify({
+					url: ctx._proxyTarget + ctx._proxyReqOpts.path,
+					method: ctx._proxyReqOpts.method,
+					cookie: ctx._proxyReqOpts.headers.cookie
+				})
+				ctx.log.info(`Request: param is: ${bodyContent}; and  ${reqParams}`)
+				// 计时开始
+				ctx._proxyStartTime = Date.now()
+				return bodyContent
+			},
+
 			/**
 			 * 代理请求被响应后的回调
 			 * @param {Response} proxyRes - 代理请求选项
@@ -89,9 +94,7 @@ module.exports = () => {
 					cost: Date.now() - ctx._proxyStartTime + 'ms',
 					status: proxyRes.statusCode
 				})
-
-				ctx.log.info(`Response: ${proxyResData}; and ${resParams}`)
-
+				ctx.log.info(`Response: ${resParams} res:  ${proxyResData}`)
 				return proxyResData
 			}
 		})
