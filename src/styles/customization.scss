@@ -1,0 +1,14 @@
+// 针对项目 cover some element-ui styles
+
+.bahasa {
+	&-table {
+		.el-table th {
+			background: #f4f6fb;
+		}
+	}
+	&-pagination{
+		padding: 20px;
+		display: flex;
+		justify-content: flex-end;
+	}
+}

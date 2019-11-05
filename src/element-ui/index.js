@@ -72,7 +72,7 @@ Vue.use(Pagination)
   .use(RadioButton)
 	.use(Loading)
 
-Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
+Vue.prototype.$ELEMENT = { size: 'medium', zIndex: 3000 };
 // eslint-disable-next-line no-undef
 Vue.prototype.$message = Message
 

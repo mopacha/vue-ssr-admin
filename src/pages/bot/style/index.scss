@@ -1,0 +1,14 @@
+.bot {
+	&-container {
+		padding: 0 20px;
+		background-color: #fff;
+		.title {
+			font-size: 14px;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: rgba(44, 51, 99, 1);
+			height: 54px;
+			line-height: 54px;
+		}
+	}
+}
