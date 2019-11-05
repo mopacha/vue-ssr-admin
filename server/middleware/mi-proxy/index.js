@@ -16,7 +16,7 @@ const isProd = process.env.NODE_ENV === 'production'
 module.exports = () => {
 	async function preProxyMiddleware(ctx, next) {
 		const url = ctx.url
-		ctx.log.info(`Request '${url}'`)
+		//ctx.log.info(`Request '${url}'`)
 		let proxyTarget
 		let proxyConfig = appConfig.proxy
 		// 在appConfig.proxy中寻找匹配前缀的代理
@@ -26,7 +26,7 @@ module.exports = () => {
 				ctx.url = url.replace(prefix, '')
 				proxyTarget = target
 				ctx._proxyTarget = proxyTarget
-				ctx.log.info(`Match to proxy: '${prefix}' => '${proxyTarget}'`)
+				//ctx.log.info(`Match to proxy: '${prefix}' => '${proxyTarget}'`)
 				break
 			}
 		}
@@ -34,7 +34,7 @@ module.exports = () => {
 			ctx.log.info('Proxy not found')
 			return Promise.resolve()
 		}
-		ctx.log.info(`Will be Agent to '${proxyTarget + ctx.url}'`)
+		//ctx.log.info(`Will be Agent to '${proxyTarget + ctx.url}'`)
 		return next()
 	}
 
@@ -54,21 +54,27 @@ module.exports = () => {
 			 */
 			async proxyReqOptDecorator(proxyReqOpts, ctx) {
 				const parsedTarget = urlUtils.parse(ctx._proxyTarget, true)
-			//	ctx.log.debug("parsedTarget", parsedTarget)
 				proxyReqOpts.host = parsedTarget.hostname
 				proxyReqOpts.port = parsedTarget.port
 				proxyReqOpts.https = parsedTarget.protocol === 'https:'
 
-				ctx.log.debug('proxyReqOpts.headers.cookie>>>>>>>>>>>:',proxyReqOpts.headers.cookie)
 				// 去掉Referer头，否则可能会造成CSRF问题，影响开发
 				if (!isProd) {
 					delete proxyReqOpts.headers.Referer
 					delete proxyReqOpts.headers.Origin
 				}
+
+				const reqParams = JSON.stringify({
+					url: ctx._proxyTarget + proxyReqOpts.path,
+					method: proxyReqOpts.method,
+					cookie: proxyReqOpts.headers.cookie
+				})
+
+				ctx.log.info('Request:', reqParams)
+
 				// 计时开始
 				ctx._proxyStartTime = Date.now()
 
-				//console.log(proxyReqOpts)
 				return proxyReqOpts
 			},
 			/**
@@ -79,11 +85,12 @@ module.exports = () => {
 			 * @return {Promise.<*>} *
 			 */
 			async userResDecorator(proxyRes, proxyResData, ctx) {
-				//ctx.log.info('ProxyRes headers:', '\n', JSON.stringify(ctx.response.headers, null, 2))
-				const location = `${ctx._proxyTarget}${ctx.url}`
-				ctx.log.debug(`Proxy request '${location}' completed(${proxyRes.statusCode}), costing ${Date.now() - ctx._proxyStartTime}ms.`)
+				const resParams = JSON.stringify({
+					cost: Date.now() - ctx._proxyStartTime + 'ms',
+					status: proxyRes.statusCode
+				})
 
-				ctx.log.info(`Response is : ${proxyResData}`)
+				ctx.log.info(`Response: ${proxyResData}; and ${resParams}`)
 
 				return proxyResData
 			}
