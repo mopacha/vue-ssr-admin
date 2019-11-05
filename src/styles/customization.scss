@@ -5,8 +5,14 @@
 		.el-table th {
 			background: #f4f6fb;
 		}
+		.el-table thead {
+			font-size: 14px;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: #5b627a;
+		}
 	}
-	&-pagination{
+	&-pagination {
 		padding: 20px;
 		display: flex;
 		justify-content: flex-end;

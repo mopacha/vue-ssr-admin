@@ -1,12 +1,12 @@
 import { getList } from '@/api'
 
 const state = {
-	botList: null
+	botRes: null
 }
 
 const mutations = {
-	SET_BOTLIST: (state, data) => {
-		state.botList = data
+	SET_BOTRES: (state, data) => {
+		state.botRes = data
 	}
 }
 
@@ -15,9 +15,8 @@ const actions = {
 	getList({ commit }, params) {
 		return new Promise((resolve, reject) => {
 			return getList(params).then(res => {
-				const { data } = res
-				commit('SET_BOTLIST', data)
-				resolve(data)
+				commit('SET_BOTRES', res)
+				resolve(res)
 			}).catch(error => {
 				reject(error)
 			})
