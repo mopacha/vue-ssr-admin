@@ -33,7 +33,7 @@ export const constantRoutes = [
 			path: 'home',
 			name: 'Home',
 			component: () => import('@/pages/home/index'),
-			meta: { title: '首页', icon: 'home' }
+			meta: { title: 'home', icon: 'home' }
 		}]
 	},
 
@@ -45,7 +45,7 @@ export const constantRoutes = [
 			path: '',
 			name: 'Bot',
 			component: () => import('@/pages/bot/index'),
-			meta: { title: '机器人管理', icon: 'bot' }
+			meta: { title: 'robotManagement', icon: 'bot' }
 		}]
 	},
 
@@ -57,7 +57,7 @@ export const constantRoutes = [
 				path: 'orgchart',
 				name: 'Orgchart',
 				component: () => import('@/pages/orgchart/index'),
-				meta: { title: '策略详情', icon: 'strategy' }
+				meta: { title: 'strategyDetail', icon: 'strategy' }
 			}
 		]
 	},

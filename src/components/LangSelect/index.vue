@@ -1,16 +1,23 @@
 <template>
-  <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
-    <div>
-      <svg-icon class-name="international-icon" icon-class="language" />
+  <el-dropdown trigger="click"
+               class="international"
+               @command="handleSetLanguage">
+    <div class="international-i">
+      <svg-icon style="width: 40px;height: 32px;"
+                class-name="international-icon"
+                icon-class="language" />
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item :disabled="language==='zh'" command="zh">
+      <el-dropdown-item :disabled="language==='zh'"
+                        command="zh">
         中文
       </el-dropdown-item>
-      <el-dropdown-item :disabled="language==='en'" command="en">
+      <el-dropdown-item :disabled="language==='en'"
+                        command="en">
         English
       </el-dropdown-item>
-      <el-dropdown-item :disabled="language==='id'" command="id">
+      <el-dropdown-item :disabled="language==='id'"
+                        command="id">
         Bahasa
       </el-dropdown-item>
     </el-dropdown-menu>
@@ -36,3 +43,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.international {
+  &-i {
+		height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+</style>

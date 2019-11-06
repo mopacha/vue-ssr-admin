@@ -4,9 +4,7 @@
                class="hamburger-container"
                @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
-
     <div class="right-menu">
-
       <lang-select class="right-menu-item hover-effect" />
       <el-dropdown class="avatar-container"
                    trigger="click">
@@ -19,16 +17,16 @@
                           class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              Home
+              {{ $t('navbar.home')}}
             </el-dropdown-item>
           </router-link>
           <a target="_blank"
              href="https://github.com/mopacha/vue-ssr-admin">
-            <el-dropdown-item>Github</el-dropdown-item>
+            <el-dropdown-item> {{ $t('navbar.github')}}</el-dropdown-item>
           </a>
           <el-dropdown-item divided>
             <span style="display:block;"
-                  @click="logout">Log Out</span>
+                  @click="logout"> {{ $t('navbar.logOut')}}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -106,7 +104,7 @@ export default {
 
     .right-menu-item {
       display: inline-block;
-      padding: 0 8px;
+      margin: 0 32px;
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
