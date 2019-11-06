@@ -1,7 +1,7 @@
 //运行于服务器
 import { createApp } from './app'
 import createStore from './store'
-import {cookie2Str} from  '@/util/cookie-tools'
+import { cookie2Str } from '@/util/cookie-tools'
 
 // 处理ssr期间cookies穿透
 import { setCookies } from '@/util/http'
@@ -9,14 +9,28 @@ import { setCookies } from '@/util/http'
 export default (context) => {
 	return new Promise((resolve, reject) => {
 		const store = createStore()
-		const { app, router } = createApp(store)
 		const { url } = context
-		// beforEach 前更新store的token
-		if (context.cookie && context.cookie['vue_ssr_token']) {
-			store.state.user.token = context.cookie['vue_ssr_token']
-		} else {
-			store.state.user.token = ''
+
+		const cookie = context.cookie
+
+		//beforEach 前更新store
+		if (cookie) {
+			//更新token
+			if (cookie['vue_ssr_token']) {
+				store.state.user.token = cookie['vue_ssr_token']
+			} else {
+				store.state.user.token = ''
+			}
+
+			// 更新language
+			if (cookie['language']) {
+				store.state.app.language = cookie['language']
+			} else {
+				store.state.app.language = 'en'
+			}
 		}
+
+		const { app, router } = createApp(store)  // 注意:放在store更新之后
 
 		router.push(url)
 
@@ -48,7 +62,7 @@ export default (context) => {
 					context.state = Object.assign(store.state, { serverError: false })
 					resolve(app)
 				}).catch(err => {
-					// 交个服务端重定向
+					// 交给服务端重定向
 					if (err.status === 401) {
 						reject(err)
 					}

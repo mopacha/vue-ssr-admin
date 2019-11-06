@@ -76,7 +76,6 @@ module.exports = function (app, uri) {
 			status = 200
 			html = await renderData(ctx, renderer)
 		} catch (e) {
-			//ctx.log.debug(`renderData err:`, e)
 			if (e.status === 404) {
 				status = 404
 				html = '404 | Not Found'
@@ -88,6 +87,7 @@ module.exports = function (app, uri) {
 				html = '500 | Internal Server Error'
 			}
 		}
+
 		ctx.type = 'html'
 		ctx.status = status ? status : ctx.status
 		ctx.body = html

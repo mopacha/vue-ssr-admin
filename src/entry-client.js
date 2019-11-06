@@ -1,11 +1,11 @@
 //运行于浏览器
+import Vue from 'vue'
 import { createApp } from './app'
 import createStore from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 import { Message } from 'element-ui'
 import { getErrMsg } from '@/util/errorMap'
-
 
 const showError = msg => {
 	Message({
@@ -23,9 +23,7 @@ Vue.mixin({
 	beforeRouteUpdate(to, from, next) {
 		const { asyncData } = this.$options
 		if (asyncData) {
-			asyncData({ store: this.$store, route: to })
-				.then(next)
-				.catch(next)
+			asyncData({ store: this.$store, route: to }).then(next).catch(next)
 		} else {
 			next()
 		}
@@ -33,11 +31,12 @@ Vue.mixin({
 })
 
 const store = createStore()
-const { app, router } = createApp(store)
-/// 将服务端渲染时候的状态写入vuex中
+// 将服务端渲染时候的状态写入vuex中
 if (window.__INITIAL_STATE__) {
 	store.replaceState(window.__INITIAL_STATE__)
 }
+
+const { app, router } = createApp(store)
 
 router.onReady((currentRoute) => {
 	// node报错时前端路由重渲染(非401状态， 401已经在服务端重定向)
@@ -48,7 +47,7 @@ router.onReady((currentRoute) => {
 			if (c.asyncData) {
 				return c.asyncData({ store, router, route })
 			}
-		})).then(() => {}).catch((e) => {
+		})).then(() => { }).catch((e) => {
 			const status = e.status
 			const errMsg = getErrMsg(status)
 			showError(errMsg)
@@ -86,7 +85,7 @@ router.onReady((currentRoute) => {
 			.catch((e) => {
 				NProgress.done()
 				const status = e.status
-				if(status === 401) {
+				if (status === 401) {
 					next('/login')
 				} else {
 					const errMsg = getErrMsg(status)

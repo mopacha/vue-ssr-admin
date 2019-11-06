@@ -1,26 +1,34 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
+    <hamburger :is-active="sidebar.opened"
+               class="hamburger-container"
+               @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
+
+      <lang-select class="right-menu-item hover-effect" />
+      <el-dropdown class="avatar-container"
+                   trigger="click">
         <div class="avatar-wrapper">
-          <img :src="headImg" class="user-avatar">
+          <img :src="headImg"
+               class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <el-dropdown-menu slot="dropdown"
+                          class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/mopacha/vue-ssr-admin">
+          <a target="_blank"
+             href="https://github.com/mopacha/vue-ssr-admin">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">Log Out</span>
+            <span style="display:block;"
+                  @click="logout">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -32,17 +40,18 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import LangSelect from '@/components/LangSelect'
 export default {
-	name: 'Navbar',
-	data() {
-		return {
-			headImg: require('@/assets/logo/user.svg')
-		}
-	},
+  name: 'Navbar',
+  data() {
+    return {
+      headImg: require('@/assets/logo/user.svg')
+    }
+  },
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    LangSelect
   },
   computed: {
     ...mapGetters([
@@ -68,7 +77,7 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-	box-shadow: 2px 2px 5px #eef3f9;
+  box-shadow: 2px 2px 5px #eef3f9;
   .hamburger-container {
     line-height: 46px;
     height: 100%;
