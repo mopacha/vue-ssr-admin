@@ -96,6 +96,7 @@ export default {
     }
   },
   mounted() {
+		//const OrgChart = require('@coofy/orgchart')
     this.initChart()
   },
   methods: {
