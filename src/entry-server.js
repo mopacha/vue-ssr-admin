@@ -5,6 +5,7 @@ import { cookie2Str } from '@/util/cookie-tools'
 
 // 处理ssr期间cookies穿透
 import { setCookies } from '@/util/http'
+import getSvgContent from '@/util/svg-spirate'
 
 export default (context) => {
 	return new Promise((resolve, reject) => {
@@ -31,6 +32,8 @@ export default (context) => {
 		}
 
 		const { app, router } = createApp(store)  // 注意:放在store更新之后
+
+		context.svgContent = getSvgContent() // 把svg-symbol 交给server-render
 
 		router.push(url)
 

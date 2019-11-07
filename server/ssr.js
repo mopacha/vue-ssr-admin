@@ -7,6 +7,8 @@ const isProd = process.env.NODE_ENV === 'production'
 const devHot = require('./dev-hot')
 const appConfig = require('../app.config')
 
+const cheerio = require('cheerio')
+
 const proxyConfig = appConfig.proxy
 
 module.exports = function (app, uri) {
@@ -23,7 +25,11 @@ module.exports = function (app, uri) {
 				if (err) {
 					return reject(err)
 				}
-				resolve(html)
+
+				const svgContent = context.svgContent
+				const $ = cheerio.load(html)
+				$('body').prepend(svgContent)
+				resolve($.html())
 			})
 		})
 	}
@@ -87,7 +93,6 @@ module.exports = function (app, uri) {
 				html = '500 | Internal Server Error'
 			}
 		}
-
 		ctx.type = 'html'
 		ctx.status = status ? status : ctx.status
 		ctx.body = html
