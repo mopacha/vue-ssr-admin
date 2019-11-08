@@ -226,6 +226,7 @@ export default {
 
 <style lang="scss">
 .Tree {
+	padding: 20px;
   #editForm {
     display: none;
     .el-dialog__header {
