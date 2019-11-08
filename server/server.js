@@ -11,7 +11,7 @@ const appConfig = require('../app.config')
 const middleware = require('./middleware/index')
 
 const {
-	miCookie,
+	miCookieParser,
 	miLog,
 	miProxy,
 	miError
@@ -25,7 +25,7 @@ const app = new Koa()
 
 app.use(miError) // 错误处理
 
-app.use(miCookie())
+app.use(miCookieParser())
 // 中间件
 app.use(miLog())
 //app.use(koaLog()) // 打印请求与响应 日志

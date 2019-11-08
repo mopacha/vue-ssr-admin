@@ -2,7 +2,7 @@ import { login, logout, getInfo } from '@/api'
 import { getToken, setToken, removeToken } from '@/util/auth'
 
 const state = {
-	token: getToken(),
+	token: '',
 	name: '',
 	userInfo: null
 }

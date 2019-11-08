@@ -2,10 +2,10 @@
 const miLog = require('./mi-log')
 const miProxy = require('./mi-proxy')
 const miError = require('./mi-error')
-const miCookie = require('./mi-cookie')
+const miCookieParser = require('./mi-cookie-parser')
 
 module.exports = {
-	miCookie,
+	miCookieParser,
 	miLog,
 	miProxy,
 	miError
