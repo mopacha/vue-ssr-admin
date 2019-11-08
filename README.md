@@ -73,3 +73,18 @@ pm2 install pm2-intercom
 优化思路： server side read icon file and 生成svg symbol 添加到template
 
 
+
+
+
+### cookies穿透
+
+在ssr期间我们需要截取客户端的cookie，保持用户会话唯一性。
+
+在`entry-server.js`中使用setCookies方法，传入的参数是从context上获取。
+
+```js
+......
+ // SSR期间同步cookies
+ setCookies(context.cookies || {})
+......
+```

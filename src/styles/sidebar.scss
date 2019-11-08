@@ -63,6 +63,9 @@
 			border: none;
 			height: 100%;
 			width: 100% !important;
+			.menu-wrapper {
+				margin-bottom: 5px;
+			}
 		}
 
 		// menu hover
@@ -104,26 +107,21 @@
 		.submenu-title-noDropdown {
 			padding: 0 !important;
 			position: relative;
-
 			.el-tooltip {
 				padding: 0 !important;
-
 				.svg-icon {
-					margin-left: 20px;
+					margin-left: 16px;
 				}
 			}
 		}
 
 		.el-submenu {
 			overflow: hidden;
-
 			& > .el-submenu__title {
 				padding: 0 !important;
-
 				.svg-icon {
-					margin-left: 20px;
+					margin-left: 16px;
 				}
-
 				.el-submenu__icon-arrow {
 					display: none;
 				}

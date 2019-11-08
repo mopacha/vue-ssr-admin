@@ -32,7 +32,7 @@ export default {
     font-size: 30px;
 		color: #97a8be;
 		.name{
-			color: #6874D0;
+			color: #396AFF;
 		}
   }
 }
