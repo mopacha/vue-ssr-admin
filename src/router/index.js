@@ -48,8 +48,53 @@ export const constantRoutes = [
 			meta: { title: 'robotManagement', icon: 'bot' }
 		}]
 	},
+	{
+		path: '/strategy',
+		component: Layout,
+		redirect: '/strategy',
+		children: [{
+			path: '',
+			name: 'Strategy',
+			component: () => import('@/pages/strategy/index'),
+			meta: { title: 'strategyDetail', icon: 'strategy' }
+		}]
+	},
 
 	{
+		path: '/task',
+		component: Layout,
+		redirect: '/task',
+		children: [{
+			path: '',
+			name: 'Task',
+			component: () => import('@/pages/task/index'),
+			meta: { title: 'taskManagement', icon: 'task' }
+		}]
+	},
+	{
+		path: '/batch',
+		component: Layout,
+		redirect: '/batch',
+		children: [{
+			path: '',
+			name: 'Batch',
+			component: () => import('@/pages/batch/index'),
+			meta: { title: 'batchManagement', icon: 'batch' }
+		}]
+	},
+	{
+		path: '/result',
+		component: Layout,
+		redirect: '/result',
+		children: [{
+			path: '',
+			name: 'Result',
+			component: () => import('@/pages/result/index'),
+			meta: { title: 'resultDetail', icon: 'result' }
+		}]
+	},
+
+	/*{
 		path: '/orgchart',
 		component: Layout,
 		children: [
@@ -60,7 +105,7 @@ export const constantRoutes = [
 				meta: { title: 'strategyDetail', icon: 'strategy' }
 			}
 		]
-	},
+	},*/
 
 	// 404 page must be placed at the end !!!
 	{ path: '*', redirect: '/404', hidden: true }
