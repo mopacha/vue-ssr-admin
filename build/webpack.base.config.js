@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
@@ -27,11 +26,6 @@ function resolve(dir) {
 	return path.resolve(process.cwd(), dir)
 }
 
-class ServerMiniCssExtractPlugin extends MiniCssExtractPlugin {
-	getCssChunkObject(mainChunk) {
-		return {}
-	}
-}
 
 module.exports = function () {
 	const config = {
@@ -95,27 +89,9 @@ module.exports = function () {
 		},
 
 		module: {
-			unknownContextCritical : false,
+			unknownContextCritical: false,
 			noParse: /es6-promise\.js$/, // avoid webpack shimming process
 			rules: [
-				{
-					test: /\.vue$/,
-					loader: 'vue-loader',
-					options: {
-						compilerOptions: {
-							preserveWhitespace: false
-						},
-						loaders: {
-							css: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader'],
-							stylus: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
-							{ loader: 'stylus-loader', options: isProd ? {} : { sourceMap: 'inline' } },
-							],
-							scss: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
-							{ loader: 'sass-loader', options: isProd ? {} : { sourceMap: true } },
-							]
-						}
-					}
-				},
 				{
 					test: /\.js$/,
 					use: {
@@ -124,28 +100,6 @@ module.exports = function () {
 					exclude: /node_modules/,
 				},
 
-				{
-					test: /\.css$/,
-					use: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader']
-				},
-				{
-					test: /\.(styl|stylus)$/,
-					use: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
-					{
-						loader: 'stylus-loader',
-						options: isProd ? {} : { sourceMap: 'inline' }
-					}
-					]
-				},
-				{
-					test: /\.scss$/,
-					use: [isProd ? ServerMiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader', 'postcss-loader',
-					{
-						loader: 'sass-loader',
-						options: isProd ? {} : { sourceMap: true }
-					}
-					]
-				},
 				{
 					test: /\.json$/,
 					use: 'json-loader',
@@ -205,11 +159,6 @@ module.exports = function () {
 
 	if (isProd) {
 		config.plugins = (config.plugins || []).concat([
-			// 分离css文件
-			new ServerMiniCssExtractPlugin({
-				filename: '[name].[chunkhash:8].min.css',
-				//chunkFilename: '[name].[chunkhash:8].css',
-			}),
 			// 限制文件最小KB
 			//new webpack.optimize.MinChunkSizePlugin({
 			//  minChunkSize: 20000

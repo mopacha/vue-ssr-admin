@@ -40,7 +40,7 @@ export function getErrMsg(status) {
 			msg = 'http版本不支持该请求'
 			break
 		default:
-			msg = `连接错误${status}`
+			msg = `网络连接错误`
 	}
 	return msg
 }
