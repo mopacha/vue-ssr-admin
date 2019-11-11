@@ -17,4 +17,16 @@
 		display: flex;
 		justify-content: flex-end;
 	}
+
+	&-btn.el-button--primary {
+		padding: 9px 20px;
+		background-color: #396aff;
+		border-color: #396aff;
+	}
+
+	&-btn.el-button--primary:hover {
+		background: #396aff;
+		border-color: #396aff;
+		opacity: 0.8;
+	}
 }
