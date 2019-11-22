@@ -31,7 +31,7 @@ export const constantRoutes = [
 		children: [
 			{
 				path: 'home',
-				name: 'Home',
+				name: 'home',
 				component: () => import('@/pages/home/index'),
 				meta: { title: 'home', icon: 'home' }
 			}
@@ -45,7 +45,7 @@ export const constantRoutes = [
 		children: [
 			{
 				path: '',
-				name: 'Batch',
+				name: 'batch',
 				component: () => import('@/pages/batch/index'),
 				meta: { title: 'batchManagement', icon: 'batch' }
 			}
@@ -59,7 +59,7 @@ export const constantRoutes = [
 		children: [
 			{
 				path: '',
-				name: 'Batch',
+				name: 'orgchart',
 				component: () => import('@/pages/orgchart/index'),
 				meta: { title: 'orgChart', icon: 'batch' }
 			}

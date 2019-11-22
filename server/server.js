@@ -7,14 +7,19 @@
 
 const Koa = require('koa')
 const koaCompress = require('koa-compress')
-const koaLog = require('koa-logger')
+//const koaLog = require('koa-logger')
 const path = require('path')
 const static = require('koa-static')
 const SSR = require('./ssr')
-const currentIP = require('ip').address()
+const address = require('ip').address()
 const appConfig = require('../app.config')
-
 const middleware = require('./middleware/index')
+const router = require('koa-router')()
+const symbols = require('log-symbols')
+const chalk = require('chalk')
+const print = require('./utils/print')
+
+const KOA_PORT = appConfig.appPort
 
 const {
 	miCookieParser,
@@ -22,9 +27,6 @@ const {
 	miProxy,
 	miError
 } = middleware
-
-
-const uri = `http://${currentIP}:${appConfig.appPort}`
 
 // koa server
 const app = new Koa()
@@ -38,22 +40,29 @@ app.use(miLog())
 app.use(koaCompress()) // 压缩响应
 
 
-
 //设置静态资源请求目录和设置缓存
 app.use(static(path.resolve(process.cwd(), 'dist'), { maxAge: 30 * 24 * 60 * 60 * 1000, gzip: true }))
 app.use(static(path.resolve(process.cwd(), 'public')))
 
+router.get('/hs', function (ctx, next) {
+  ctx.body = 'OK'
+})
+
+app.use(router.routes()).use(router.allowedMethods())
+
 // vue ssr处理
-SSR(app, uri)
+SSR(app, address)
 
 // http代理中间件
 app.use(miProxy())
 
-console.log(`\n> Starting server... ${uri} \n`)
-
 // 错误处理
 app.on('error', (err) => {
-	 console.error('Server error: \n%s\n%s ', err.stack || '')
+	console.error('Server error: \n%s\n%s ', err.stack || '')
 })
 
-app.listen(appConfig.appPort, '0.0.0.0')
+app.listen(KOA_PORT, () => {
+	print.bastet()
+	console.log(symbols.success, chalk.green(`server on: http://${address}:${KOA_PORT}`))
+})
+
