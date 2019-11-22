@@ -1,4 +1,4 @@
-//app配置
+//app 配置
 const path = require('path')
 const conf = require('./config/default')
 const devConf = require('./config/development')
@@ -20,7 +20,6 @@ module.exports = {
 	//代理配置，可支持多个代理，key为前缀，命中后，会把前缀去掉，转发到代理服务器
 	proxy: {
 		'/fastApp': isProd ? conf.apiHost : devConf.apiHost,
-		'/waterApp': isProd ? conf.apiHost2 : devConf.apiHost2,
-		'/bahasaApp': isProd ? conf.apiHost3 : devConf.apiHost3
+		'/coolApp': isProd ? conf.apiHost2 : devConf.apiHost2,
 	}
 }
