@@ -2,16 +2,13 @@
  * @Description:
  * @Autor: ZFY
  * @Date: 2019-11-11 14:47:36
- * @LastEditTime: 2019-11-22 12:32:10
+ * @LastEditTime: 2019-11-22 13:01:49
  */
 export default {
 	route: {
 		home: 'Home',
-		robotManagement: 'Robot Management',
-		strategyDetail: 'Strategy Detail',
-		taskManagement: 'Task Management',
 		batchManagement: 'Batch Management',
-		resultDetail: 'Conclusion Details'
+		orgChart: 'Organization Chart'
 	},
 	navbar: {
 		home: 'Home',
@@ -19,7 +16,7 @@ export default {
 		logOut: 'Log Out'
 	},
 	page: {
-		summary: 'Task Overview',
+		summary: 'Overview',
 		taskName: 'Task Name',
 		robot: 'Robot',
 		createdName: 'Created Time',

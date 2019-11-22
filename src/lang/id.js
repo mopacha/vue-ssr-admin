@@ -2,17 +2,14 @@
  * @Description:
  * @Autor: ZFY
  * @Date: 2019-11-11 14:47:36
- * @LastEditTime: 2019-11-22 12:46:58
+ * @LastEditTime: 2019-11-22 13:01:02
  */
 //印尼语
 export default {
 	route: {
 		home: 'Rumah',
-		robotManagement: 'Manajemen Robot',
-		strategyDetail: 'Rincian Kebijakan',
-		taskManagement: 'Manajemen Tugas',
 		batchManagement: 'Panggil Batch',
-		resultDetail: 'Detail Kesimpulan'
+		orgChart: 'Struktur Organisasi'
 	},
 	navbar: {
 		home: 'Rumah',

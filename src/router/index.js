@@ -51,6 +51,20 @@ export const constantRoutes = [
 			}
 		]
 	},
+
+	{
+		path: '/orgchart',
+		component: Layout,
+		redirect: '/orgchart',
+		children: [
+			{
+				path: '',
+				name: 'Batch',
+				component: () => import('@/pages/orgchart/index'),
+				meta: { title: 'orgChart', icon: 'batch' }
+			}
+		]
+	},
 	// 404 page must be placed at the end !!!
 	{ path: '*', redirect: '/404', hidden: true }
 ]

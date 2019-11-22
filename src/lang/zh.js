@@ -2,13 +2,13 @@
  * @Description:
  * @Autor: ZFY
  * @Date: 2019-11-11 14:47:36
- * @LastEditTime: 2019-11-22 12:31:44
+ * @LastEditTime: 2019-11-22 13:03:53
  */
 export default {
 	route: {
 		home: '首页',
 		batchManagement: '批次管理',
-
+		orgChart: '组织图'
 	},
 	navbar: {
 		home: '首页',
@@ -16,7 +16,7 @@ export default {
 		logOut: '退出登录'
 	},
 	page: {
-		summary: '任务概述',
+		summary: '概述',
 		taskName: '任务名',
 		robot: '机器人',
 		createdName: '创建时间',
