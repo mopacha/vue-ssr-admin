@@ -65,6 +65,20 @@ export const constantRoutes = [
 			}
 		]
 	},
+	/*
+	{
+		path: '/echart',
+		component: Layout,
+		redirect: '/echart',
+		children: [
+			{
+				path: '',
+				name: 'echart',
+				component: () => import('@/pages/echart/index'),
+				meta: { title: 'echart', icon: 'batch' }
+			}
+		]
+	},*/
 	// 404 page must be placed at the end !!!
 	{ path: '*', redirect: '/404', hidden: true }
 ]
