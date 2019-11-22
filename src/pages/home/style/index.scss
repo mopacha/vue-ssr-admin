@@ -1,0 +1,14 @@
+.home {
+	&-container {
+		padding: 20px;
+		background-color: #fff;
+	}
+
+	&-text {
+		font-size: 30px;
+		color: #97a8be;
+		.name {
+			color: #396aff;
+		}
+	}
+}

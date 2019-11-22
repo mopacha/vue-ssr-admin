@@ -1,0 +1,51 @@
+.batch {
+	background-color: #fff;
+	padding: 0 20px 20px;
+	.summaryDialog {
+		.item {
+			.label,
+			.value {
+				display: inline-block;
+				font-size: 14px;
+				height: 30px;
+				font-family: PingFangSC-Medium, PingFang SC;
+				font-weight: 500;
+				color: rgba(44, 51, 99, 1);
+			}
+			.label {
+				width: 200px;
+				text-align: left;
+			}
+		}
+		.percent {
+			padding-top: 20px;
+			text-align: center;
+			position: relative;
+			.first {
+				margin-right: 60px;
+			}
+			.text-1,
+			.text-2 {
+				width: 130px;
+				display: inline-block;
+				position: absolute;
+				z-index: 22;
+				top: 120px;
+				text-align: center;
+			}
+			.text-1 {
+				left: 30px;
+			}
+			.text-2 {
+				left: 260px;
+			}
+		}
+	}
+	.top {
+		margin-bottom: 20px;
+		> * {
+			margin-right: 20px;
+			margin-top: 20px;
+		}
+	}
+}

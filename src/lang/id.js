@@ -2,7 +2,7 @@
  * @Description:
  * @Autor: ZFY
  * @Date: 2019-11-11 14:47:36
- * @LastEditTime: 2019-11-22 12:34:02
+ * @LastEditTime: 2019-11-22 12:46:58
  */
 //印尼语
 export default {
@@ -20,8 +20,8 @@ export default {
 		logOut: 'Keluar'
 	},
 	page: {
-		summary: 'Task Overview',
-		taskName: 'Task Name',
+		summary: 'Ikhtisar',
+		taskName: 'Nama tugas',
 		robot: 'Robot',
 		createdName: 'Created Time',
 		startTime: 'Start Time',

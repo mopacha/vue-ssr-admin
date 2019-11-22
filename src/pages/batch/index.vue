@@ -27,28 +27,27 @@
 			</div>
 			<div class="percent">
 				<span class="text-1">{{ $t('page.reached') }}: {{ summary.reached }}</span>
-				<el-progress :width="170" :stroke-width="12" class="first" type="circle" :percentage="summary.reachedPercent" :format="percentFormat">
-				</el-progress>
+				<el-progress :width="170" :stroke-width="12" class="first" type="circle" :percentage="summary.reachedPercent"> </el-progress>
 				<span class="text-2">{{ $t('page.unreached') }}: {{ summary.unReached }}</span>
 				<el-progress :width="170" :stroke-width="12" type="circle" :percentage="summary.unReachedPercent"></el-progress>
 			</div>
 		</el-dialog>
 
 		<div class="top">
-			<el-select v-model="taskInput" filterable placeholder="任务名">
+			<el-select v-model="taskInput" filterable :placeholder="$t('page.taskName')">
 				<el-option v-for="item in taskOptions" :key="item.index" :label="item.label" :value="item.value"> </el-option>
 			</el-select>
-			<el-button @click="searchData" class="search-button" type="primary">搜索</el-button>
+			<el-button @click="searchData" class="search-button" type="primary">{{ $t('page.search') }}</el-button>
 		</div>
 
 		<div class="bahasa-table">
 			<el-table :data="jobData.list">
-				<el-table-column prop="taskName" label="任务名"> </el-table-column>
-				<el-table-column prop="botName" label="机器人"> </el-table-column>
-				<el-table-column prop="status" label="状态"> </el-table-column>
-				<el-table-column label="信息">
+				<el-table-column prop="taskName" :label="$t('page.taskName')"> </el-table-column>
+				<el-table-column prop="botName" :label="$t('page.robot')"> </el-table-column>
+				<el-table-column prop="status" :label="$t('page.status')"> </el-table-column>
+				<el-table-column :label="$t('page.info')">
 					<template slot-scope="scope">
-						<span @click="summaryInfo(scope.row)" class="bahasa-link">概述</span>
+						<span @click="summaryInfo(scope.row)" class="bahasa-link">{{ $t('page.summary') }}</span>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -78,7 +77,7 @@ export default {
 	async asyncData({ store, route }) {
 		const params = {
 			current: 1,
-			size: 9999,
+			size: '',
 			vo: {}
 		}
 		await Promise.all([
@@ -131,15 +130,9 @@ export default {
 		}
 	},
 	methods: {
-		percentFormat(percentage) {
-			return `${percentage}%`
-		},
-
 		async summaryInfo(row) {
 			const data = await API(this.$store.$http).getJobSummary(row.id)
-
 			const count = data.count
-
 			const reached = data.answeredCount
 			const unReached = count - reached
 			const reachedPercent = count ? parseInt((reached / count) * 100) : 0
@@ -153,7 +146,6 @@ export default {
 			this.summary = data
 			this.summaryVisible = true
 		},
-
 		searchData() {
 			this.getData()
 		},
@@ -181,55 +173,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.batch {
-	background-color: #fff;
-	padding: 0 20px 20px;
-	.summaryDialog {
-		.item {
-			.label,
-			.value {
-				display: inline-block;
-				font-size: 14px;
-				height: 30px;
-				font-family: PingFangSC-Medium, PingFang SC;
-				font-weight: 500;
-				color: rgba(44, 51, 99, 1);
-			}
-			.label {
-				width: 200px;
-				text-align: left;
-			}
-		}
-		.percent {
-			padding-top: 20px;
-			text-align: center;
-			position: relative;
-			.first {
-				margin-right: 60px;
-			}
-			.text-1,
-			.text-2 {
-				width: 130px;
-				display: inline-block;
-				position: absolute;
-				z-index: 22;
-				top: 120px;
-				text-align: center;
-			}
-			.text-1 {
-				left: 30px;
-			}
-			.text-2 {
-				left: 260px;
-			}
-		}
-	}
-	.top {
-		margin-bottom: 20px;
-		> * {
-			margin-right: 20px;
-			margin-top: 20px;
-		}
-	}
-}
+@import './style/index.scss';
 </style>
