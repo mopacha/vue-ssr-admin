@@ -18,15 +18,32 @@
 		justify-content: flex-end;
 	}
 
-	&-btn.el-button--primary {
-		padding: 9px 20px;
-		background-color: #396aff;
-		border-color: #396aff;
+	&-link {
+		cursor: pointer;
+		font-size: 14px;
+		font-family: PingFangSC-Medium, PingFang SC;
+		font-weight: 500;
+		color: rgba(57, 106, 255, 1);
 	}
+	&-blue {
+		color: rgba(57, 106, 255, 1);
+	}
+}
 
-	&-btn.el-button--primary:hover {
-		background: #396aff;
-		border-color: #396aff;
+.el-button--primary, .el-button--medium.is-round, .el-button--medium {
+	padding: 9px 20px !important;
+}
+.el-button--primary,
+.el-button--primary.is-disabled {
+	background-color: #396aff!important;
+	border-color:#396aff!important;
+	&:active,
+	&:hover,
+	&:focus {
+		background: #396aff!important;
+		border-color:#396aff!important;
+	}
+	&:hover {
 		opacity: 0.8;
 	}
 }

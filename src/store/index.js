@@ -16,7 +16,6 @@ export default () => {
 					user,
 					bot
         },
-        getters,
-        strict: process.env.NODE_ENV !== 'production'
+        getters
     })
 }

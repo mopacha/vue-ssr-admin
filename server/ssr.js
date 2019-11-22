@@ -1,4 +1,10 @@
-//vue ssr的koa2中间件。匹配路由、请求接口生成dom，实现SSR
+/*
+ * @Description: vue ssr的koa2中间件。匹配路由、请求接口生成dom，实现SSR
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:35
+ * @LastEditTime: 2019-11-22 10:51:52
+ */
+
 const fs = require('fs')
 const path = require('path')
 const LRU = require('lru-cache')
@@ -16,16 +22,16 @@ module.exports = function (app, uri) {
 		//ctx.log.debug(`把cookie 注入到 context 中:`, ctx.cookie)
 		const context = {
 			url: ctx.url,
-			title: 'VUE-SSR',
+			title: 'Vue-SSR',
 			cookie: ctx.cookie //把cookie 注入到 context 中
 		}
 		return new Promise((resolve, reject) => {
 			//renderer.renderToString 开始执行行entry-erver.js
 			renderer.renderToString(context, (err, html) => {
 				if (err) {
+					ctx.log.debug(`renderToString:`, err)
 					return reject(err)
 				}
-
 				const svgContent = context.svgContent
 				const $ = cheerio.load(html)
 				$('body').prepend(svgContent)

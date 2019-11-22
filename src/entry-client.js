@@ -1,20 +1,19 @@
-//运行于浏览器
+/*
+ * @Description:运行于浏览器
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:36
+ * @LastEditTime: 2019-11-15 17:16:29
+ */
+
 import Vue from 'vue'
 import { createApp } from './app'
 import createStore from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
-import { Message } from 'element-ui'
-import { getErrMsg } from '@/util/errorMap'
 
-const showError = msg => {
-	Message({
-		showClose: true,
-		message: msg,
-		type: 'error',
-		duration: 3.5 * 1000
-	})
-}
+// 引入http请求
+import http from '~http'
+
 
 NProgress.configure({ easing: 'ease', speed: 500 })
 
@@ -33,7 +32,10 @@ Vue.mixin({
 const store = createStore()
 // 将服务端渲染时候的状态写入vuex中
 if (window.__INITIAL_STATE__) {
+	//console.log(window.__INITIAL_STATE__)
 	store.replaceState(window.__INITIAL_STATE__)
+	// 客户端和服务端保持一致
+	store.$http = store.state.$http = http()
 }
 
 const { app, router } = createApp(store)
@@ -47,11 +49,7 @@ router.onReady((currentRoute) => {
 			if (c.asyncData) {
 				return c.asyncData({ store, router, route })
 			}
-		})).then(() => { }).catch((e) => {
-			const status = e.status
-			const errMsg = getErrMsg(status)
-			showError(errMsg)
-		})
+		}))
 	}
 
 	if (window.__INITIAL_STATE__.serverError) {
@@ -82,16 +80,9 @@ router.onReady((currentRoute) => {
 				NProgress.done()
 				next()
 			})
-			.catch((e) => {
+			.catch(() => {
 				NProgress.done()
-				const status = e.status
-				if (status === 401) {
-					next('/login')
-				} else {
-					const errMsg = getErrMsg(status)
-					showError(errMsg)
-					next()
-				}
+				next()
 			})
 	})
 	// 挂载vue实例

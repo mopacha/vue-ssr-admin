@@ -1,3 +1,9 @@
+<!--
+ * @Description:
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:36
+ * @LastEditTime: 2019-11-22 10:52:09
+ -->
 <template>
   <div class="sidebar-logo-container"
        :class="{'collapse':isCollapse}">
@@ -31,7 +37,7 @@ export default {
   name: 'SidebarLogo',
   data() {
     return {
-      title: 'VUE-SSR',
+      title: 'Vue-SSR',
       logo: require('@/assets/logo/logo.png')
     }
   },

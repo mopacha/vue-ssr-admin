@@ -1,5 +1,11 @@
+<!--
+ * @Description:
+ * @Autor: ZFY
+ * @Date: 2019-11-22 10:49:55
+ * @LastEditTime: 2019-11-22 12:29:10
+ -->
 <template>
-  <el-dropdown trigger="click"
+  <el-dropdown trigger="hover"
                class="international"
                @command="handleSetLanguage">
     <div class="international-i">
@@ -18,7 +24,7 @@
       </el-dropdown-item>
       <el-dropdown-item :disabled="language==='id'"
                         command="id">
-        Bahasa
+        Indonesia
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -47,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 .international {
   &-i {
-		height: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

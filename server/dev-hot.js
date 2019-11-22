@@ -1,4 +1,10 @@
-//# koa2开发模式实现hot热更新
+/*
+ * @Description:koa2开发模式实现hot热更新
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:35
+ * @LastEditTime: 2019-11-15 17:19:54
+ */
+
 const path = require('path')
 const MFS = require('memory-fs')
 const webpack = require('webpack')

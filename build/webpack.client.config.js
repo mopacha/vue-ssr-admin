@@ -13,6 +13,11 @@ module.exports = function () {
 		entry: {
 			app: path.join(process.cwd(), 'src/entry-client.js'),
 		},
+		resolve: {
+			alias: {
+				'~http': path.resolve(`src/http/index-client.js`),
+			}
+		},
 		optimization: {
 			splitChunks: {
 				chunks: "all",

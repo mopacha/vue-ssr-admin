@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Layout from '@/layout'
 import { getToken } from '@/util/auth' // get token from cookie
 
-
 //fix bug  Uncaught (in promise) NavigationDuplicated {_name: "NavigationDuplicated", name: "NavigationDuplicated"}
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -29,90 +28,34 @@ export const constantRoutes = [
 		path: '/',
 		component: Layout,
 		redirect: '/home',
-		children: [{
-			path: 'home',
-			name: 'Home',
-			component: () => import('@/pages/home/index'),
-			meta: { title: 'home', icon: 'home' }
-		}]
+		children: [
+			{
+				path: 'home',
+				name: 'Home',
+				component: () => import('@/pages/home/index'),
+				meta: { title: 'home', icon: 'home' }
+			}
+		]
 	},
 
-	{
-		path: '/bot',
-		component: Layout,
-		redirect: '/bot',
-		children: [{
-			path: '',
-			name: 'Bot',
-			component: () => import('@/pages/bot/index'),
-			meta: { title: 'robotManagement', icon: 'bot' }
-		}]
-	},
-	{
-		path: '/strategy',
-		component: Layout,
-		redirect: '/strategy',
-		children: [{
-			path: '',
-			name: 'Strategy',
-			component: () => import('@/pages/strategy/index'),
-			meta: { title: 'strategyDetail', icon: 'strategy' }
-		}]
-	},
-
-	{
-		path: '/task',
-		component: Layout,
-		redirect: '/task',
-		children: [{
-			path: '',
-			name: 'Task',
-			component: () => import('@/pages/task/index'),
-			meta: { title: 'taskManagement', icon: 'task' }
-		}]
-	},
 	{
 		path: '/batch',
 		component: Layout,
 		redirect: '/batch',
-		children: [{
-			path: '',
-			name: 'Batch',
-			component: () => import('@/pages/batch/index'),
-			meta: { title: 'batchManagement', icon: 'batch' }
-		}]
-	},
-	{
-		path: '/result',
-		component: Layout,
-		redirect: '/result',
-		children: [{
-			path: '',
-			name: 'Result',
-			component: () => import('@/pages/result/index'),
-			meta: { title: 'resultDetail', icon: 'result' }
-		}]
-	},
-
-	/*{
-		path: '/orgchart',
-		component: Layout,
 		children: [
 			{
-				path: 'orgchart',
-				name: 'Orgchart',
-				component: () => import('@/pages/orgchart/index'),
-				meta: { title: 'strategyDetail', icon: 'strategy' }
+				path: '',
+				name: 'Batch',
+				component: () => import('@/pages/batch/index'),
+				meta: { title: 'batchManagement', icon: 'batch' }
 			}
 		]
-	},*/
-
+	},
 	// 404 page must be placed at the end !!!
 	{ path: '*', redirect: '/404', hidden: true }
 ]
 
-
-export default (store) => {
+export default store => {
 	const router = new Router({
 		mode: 'history',
 		scrollBehavior(to, from, savedPosition) {
@@ -131,9 +74,11 @@ export default (store) => {
 			if (token) {
 				next()
 			} else {
-				if (to.path == '/login') { //如果是登录页面路径，就直接next()
+				if (to.path == '/login') {
+					//如果是登录页面路径，就直接next()
 					next()
-				} else { //不然就跳转到登录；
+				} else {
+					//不然就跳转到登录；
 					next('/login')
 				}
 			}
@@ -147,7 +92,7 @@ export default (store) => {
 		// }
 	})
 
-	router.afterEach((route) => {
+	router.afterEach(route => {
 		/*todo*/
 	})
 

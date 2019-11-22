@@ -27,6 +27,11 @@ module.exports = function () {
 			filename: 'server-bundle.js',
 			libraryTarget: 'commonjs2'
 		},
+		resolve: {
+			alias: {
+				'~http': path.resolve(`src/http/index-server.js`),
+			}
+		},
 		// 外置化应用程序依赖模块。可以使服务器构建速度更快，
 		// 并生成较小的 bundle 文件。
 		externals: nodeExternals({

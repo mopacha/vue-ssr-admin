@@ -1,3 +1,9 @@
+/*
+ * @Description:
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:35
+ * @LastEditTime: 2019-11-18 14:46:35
+ */
 // 按需加载
 import {
 	Pagination,
@@ -32,7 +38,12 @@ import {
 	Tooltip,
 	RadioGroup,
 	RadioButton,
-	Loading
+	Loading,
+	TimePicker,
+	TimeSelect,
+	DatePicker,
+	Alert,
+	Upload
 } from 'element-ui'
 
 
@@ -71,6 +82,11 @@ const element = {
 			.use(RadioGroup)
 			.use(RadioButton)
 			.use(Loading)
+			.use(TimeSelect)
+			.use(TimePicker)
+			.use(DatePicker)
+			.use(Alert)
+			.use(Upload)
 	}
 }
 

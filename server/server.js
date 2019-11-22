@@ -1,4 +1,10 @@
-//koa2服务详细配置
+/*
+ * @Description:koa2服务详细配置
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:35
+ * @LastEditTime: 2019-11-15 17:19:42
+ */
+
 const Koa = require('koa')
 const koaCompress = require('koa-compress')
 const koaLog = require('koa-logger')

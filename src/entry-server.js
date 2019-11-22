@@ -1,34 +1,33 @@
-//运行于服务器
+/*
+ * @Description:运行于服务器
+ * @Autor: ZFY
+ * @Date: 2019-11-11 14:47:36
+ * @LastEditTime: 2019-11-22 10:32:43
+ */
+
+
 import { createApp } from './app'
 import createStore from './store'
-import { cookie2Str } from '@/util/cookie-tools'
-
-// 处理ssr期间cookies穿透
-import { setCookies } from '@/util/http'
+// 引入http请求
+import http from '~http'
 import getSvgContent from '@/util/svg-spirate'
 
 export default (context) => {
 	return new Promise((resolve, reject) => {
 		const store = createStore()
 		const { url } = context
-
 		const cookie = context.cookie
 
 		//beforEach 前更新store
 		if (cookie) {
-			//更新token
-			if (cookie['vue_ssr_token']) {
-				store.state.user.token = cookie['vue_ssr_token']
-			} else {
-				store.state.user.token = ''
-			}
-
-			// 更新language
-			if (cookie['language']) {
-				store.state.app.language = cookie['language']
-			} else {
-				store.state.app.language = 'en'
-			}
+			const {
+				vue_ssr_token = '',
+				language = '',
+				name = ''
+			} = cookie
+			store.state.user.token = vue_ssr_token 	//更新token
+			store.state.app.language = language 	// 更新language
+			store.state.user.name = name
 		}
 
 		const { app, router } = createApp(store)  // 注意:放在store更新之后
@@ -44,8 +43,10 @@ export default (context) => {
 			if (!matcheds.length) {
 				return reject({ code: 404 })
 			}
-			// SSR期间同步cookies
-			setCookies(cookie2Str(context.cookie))
+
+			// http注入到rootState 和store上，方便store 里和.vue组件中调用
+			store.$http = store.state.$http = http(cookie)
+
 			// 使用Promise.all执行匹配到的Component的asyncData方法，即预取数据
 			Promise.all(matcheds.map(Component => {
 				if (Component.asyncData) {
@@ -69,6 +70,7 @@ export default (context) => {
 					if (err.status === 401) {
 						reject(err)
 					}
+					console.log('erntry-server.js::::::>>>', err)
 					//增加服务端预渲染错误标识，前端拿到标志后重新渲染
 					context.state = Object.assign(store.state, { serverError: true })
 					//最后，将服务端vue实例正常返回，避免抛500
