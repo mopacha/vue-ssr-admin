@@ -1,4 +1,5 @@
-# vue-ssr-admin
+# 基于Vue SSR 的工程化实践
+
 
 VUE-SSR 、Node.js Web 框架
 
@@ -41,4 +42,7 @@ VUE-SSR 、Node.js Web 框架
 	```npm
 	pm2 delete vue-ssr-admin
 	```
-  	
+
+## 参考文档
+
+https://mopacha.github.io/vue-ssr-doc/
